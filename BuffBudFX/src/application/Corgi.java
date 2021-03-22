@@ -16,14 +16,49 @@ public class Corgi extends Pet {
 	}
 	
 	public void initIdleAnimList() {
-		this.idleAnimList.add(new Image("file:Images/Corgi/corgiIdle0.png", 132, 108, true, false));
-		this.idleAnimList.add(new Image("file:Images/Corgi/corgiIdle1.png", 132, 116, true, false));
-		this.idleAnimList.add(new Image("file:Images/Corgi/corgiIdle2.png", 132, 108, true, false));
-		this.idleAnimList.add(new Image("file:Images/Corgi/corgiIdle3.png", 132, 116, true, false));
-		this.idleAnimList.add(new Image("file:Images/Corgi/corgiIdle4.png", 132, 108, true, false));
-		this.idleAnimList.add(new Image("file:Images/Corgi/corgiIdle5.png", 132, 116, true, false));
-		this.idleAnimList.add(new Image("file:Images/Corgi/corgiIdle6.png", 132, 108, true, false));
-		this.idleAnimList.add(new Image("file:Images/Corgi/corgiIdle7.png", 132, 116, true, false));
-		this.idleAnimList.add(new Image("file:Images/Corgi/corgiIdle8.png", 132, 108, true, false));
+		this.idleAnimList.add(new Image("file:Images/Corgi/corgiIdle0.png", 180, 132, true, false));
+		this.idleAnimList.add(new Image("file:Images/Corgi/corgiIdle1.png", 180, 132, true, false));
+		this.idleAnimList.add(new Image("file:Images/Corgi/corgiIdle2.png", 180, 132, true, false));
+		this.idleAnimList.add(new Image("file:Images/Corgi/corgiIdle3.png", 180, 132, true, false));
+		this.idleAnimList.add(new Image("file:Images/Corgi/corgiIdle4.png", 180, 132, true, false));
+		this.idleAnimList.add(new Image("file:Images/Corgi/corgiIdle0.png", 180, 132, true, false));
+		this.idleAnimList.add(new Image("file:Images/Corgi/corgiIdle5.png", 180, 132, true, false));
+		this.idleAnimList.add(new Image("file:Images/Corgi/corgiIdle6.png", 180, 132, true, false));
+		this.idleAnimList.add(new Image("file:Images/Corgi/corgiIdle7.png", 180, 132, true, false));
+		this.idleAnimList.add(new Image("file:Images/Corgi/corgiIdle0.png", 180, 132, true, false));
+		this.idleAnimList.add(new Image("file:Images/Corgi/corgiIdle1.png", 180, 132, true, false));
+		this.idleAnimList.add(new Image("file:Images/Corgi/corgiIdle2.png", 180, 132, true, false));
+		this.idleAnimList.add(new Image("file:Images/Corgi/corgiIdle3.png", 180, 132, true, false));
+		this.idleAnimList.add(new Image("file:Images/Corgi/corgiIdle4.png", 180, 132, true, false));
+		this.idleAnimList.add(new Image("file:Images/Corgi/corgiIdle0.png", 180, 132, true, false));
+		this.idleAnimList.add(new Image("file:Images/Corgi/corgiIdle5.png", 180, 132, true, false));
+		this.idleAnimList.add(new Image("file:Images/Corgi/corgiIdle6.png", 180, 132, true, false));
+		this.idleAnimList.add(new Image("file:Images/Corgi/corgiIdle7.png", 180, 132, true, false));
+		this.idleAnimList.add(new Image("file:Images/Corgi/corgiIdle0.png", 180, 132, true, false));
+		this.idleAnimList.add(new Image("file:Images/Corgi/corgiSit0.png", 180, 132, true, false));
+		this.idleAnimList.add(new Image("file:Images/Corgi/corgiSit1.png", 180, 132, true, false));
+		this.idleAnimList.add(new Image("file:Images/Corgi/corgiSit2.png", 180, 132, true, false));
+		this.idleAnimList.add(new Image("file:Images/Corgi/corgiSit3.png", 180, 132, true, false));
+		this.idleAnimList.add(new Image("file:Images/Corgi/corgiSit4.png", 180, 132, true, false));
+		this.idleAnimList.add(new Image("file:Images/Corgi/corgiSit5.png", 180, 132, true, false));
+		this.idleAnimList.add(new Image("file:Images/Corgi/corgiSit6.png", 180, 132, true, false));
+		this.idleAnimList.add(new Image("file:Images/Corgi/corgiSit7.png", 180, 132, true, false));
+		this.idleAnimList.add(new Image("file:Images/Corgi/corgiSit6.png", 180, 132, true, false));
+		this.idleAnimList.add(new Image("file:Images/Corgi/corgiSit5.png", 180, 132, true, false));
+		this.idleAnimList.add(new Image("file:Images/Corgi/corgiSit4.png", 180, 132, true, false));
+		this.idleAnimList.add(new Image("file:Images/Corgi/corgiSit3.png", 180, 132, true, false));
+		this.idleAnimList.add(new Image("file:Images/Corgi/corgiSit2.png", 180, 132, true, false));
+		this.idleAnimList.add(new Image("file:Images/Corgi/corgiSit3.png", 180, 132, true, false));
+		this.idleAnimList.add(new Image("file:Images/Corgi/corgiSit4.png", 180, 132, true, false));
+		this.idleAnimList.add(new Image("file:Images/Corgi/corgiSit5.png", 180, 132, true, false));
+		this.idleAnimList.add(new Image("file:Images/Corgi/corgiSit6.png", 180, 132, true, false));
+		this.idleAnimList.add(new Image("file:Images/Corgi/corgiSit7.png", 180, 132, true, false));
+		this.idleAnimList.add(new Image("file:Images/Corgi/corgiSit6.png", 180, 132, true, false));
+		this.idleAnimList.add(new Image("file:Images/Corgi/corgiSit5.png", 180, 132, true, false));
+		this.idleAnimList.add(new Image("file:Images/Corgi/corgiSit4.png", 180, 132, true, false));
+		this.idleAnimList.add(new Image("file:Images/Corgi/corgiSit3.png", 180, 132, true, false));
+		this.idleAnimList.add(new Image("file:Images/Corgi/corgiSit2.png", 180, 132, true, false));
+		this.idleAnimList.add(new Image("file:Images/Corgi/corgiSit1.png", 180, 132, true, false));
+		this.idleAnimList.add(new Image("file:Images/Corgi/corgiSit0.png", 180, 132, true, false));
 	}
 }

@@ -27,7 +27,7 @@ public class GameWindow {
 	// For top toolbar component
 	Button exitButton = new Button("Save & Exit");
 	Button saveButton = new Button("Save");
-	Label healthLabel = new Label("Health Level: ");
+	Label healthLabel = new Label("Health Level: " + pet.getHealthLevel());
 
 	// For center pet display
 	Image petImage = pet.getIdleAnimList().get(0);
@@ -52,7 +52,7 @@ public class GameWindow {
 
 		// Setting up center component of our main pane - pet display
 		mainPane.setCenter(petView);
-		mainPane.setMargin(petView, new Insets(280, 0, 0, 0));
+		mainPane.setMargin(petView, new Insets(250, 0, 0, 0));
 
 		// Setting up bottom component of our main pane - dialogue box / text area
 		dialogue.setEditable(false);
