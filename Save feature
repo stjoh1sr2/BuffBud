@@ -1,24 +1,35 @@
-	// Save feature
-	public static void save() {
+// Setting up button actions
+	saveButton.setOnAction(e -> {
+		save();
+	});
 		
-		// Writes in file
-		/** Does not work because of protected image variable in pet class
-		ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("Pet.txt"));
-		out.writeObject(pet);
-		**/
+	exitButton.setOnAction(e -> {
+		save();
+		stage.close();
+	});
+	
+	
+// Save feature
+public static void save() {
 		
-		PrintWriter writer = null;
+	// Writes in file
+	/** Does not work because of protected image variable in pet class
+	ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("Pet.txt"));
+	out.writeObject(pet);
+	**/
 		
-		try {
+	PrintWriter writer = null;
+		
+	try {
 			
-			writer = new PrintWriter("Pet.txt");			
+	writer = new PrintWriter("Pet.txt");			
 			
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
-		
-		// Writes in file to save information about p
-		writer.println(pet.getPetName() + "," + pet.getHealthLevel() + "," + pet.getTimeOfLastExcersize());
-		writer.close();
-		
+	} catch (FileNotFoundException e) {
+		e.printStackTrace();
 	}
+		
+	// Writes in file to save information about p
+	writer.println(pet.getPetName() + "," + pet.getHealthLevel() + "," + pet.getTimeOfLastExcersize());
+	writer.close();
+	
+}
