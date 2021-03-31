@@ -46,10 +46,13 @@ public class NotificationApp {
 	//notificationTimer.schedule(TimerTask, long delay, long period)
 	//delay: when you click run, it will take delay milliseconds to start
 	//period: milliseconds after first run when notification pops up
+			
+	//number = minutes entered
+	//convert from minutes to millisecond by multiplying input with 60000
 			if(number > 0)
-				number = number*600;
+				number = number*60000;
 			else
-				System.out.println("Error");
+				System.out.println("Error: Invalid Input");
 		long millisecond = number;
 		
 	try {
