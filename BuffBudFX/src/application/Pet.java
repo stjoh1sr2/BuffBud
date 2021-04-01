@@ -12,13 +12,20 @@ public abstract class Pet {
 	private int healthLevel; // Between 0 and 100
 	private boolean isSleeping; // Sleeping if health level at 0
 	private String petName;
-	private long timeOfLastExcersize;
+	private long timeOfLastExercise;
 
 	public Pet(String petName) {
 		this.healthLevel = 50;
 		this.isSleeping = false;
 		this.petName = petName;
-		this.timeOfLastExcersize = System.nanoTime();
+		this.timeOfLastExercise = System.nanoTime();
+	}
+	
+	public Pet(String petName, int healthLevel, long timeOfLastExercise, boolean isSleeping) {
+		this.petName = petName;
+		this.healthLevel = healthLevel;
+		this.timeOfLastExercise = timeOfLastExercise;
+		this.isSleeping = isSleeping;
 	}
 
 	public int getHealthLevel() {
@@ -45,16 +52,16 @@ public abstract class Pet {
 		this.petName = petName;
 	}
 	
-	public long getTimeOfLastExcersize() {
-		return timeOfLastExcersize;
+	public long getTimeOfLastExercise() {
+		return timeOfLastExercise;
 	}
 
-	public void setTimeOfLastExcersize(long timeOfLastExcersize) {
-		this.timeOfLastExcersize = timeOfLastExcersize;
+	public void setTimeOfLastExercise(long timeOfLastExercise) {
+		this.timeOfLastExercise = timeOfLastExercise;
 	}
 
-	public void excersizeSuccess() {
-		timeOfLastExcersize = System.currentTimeMillis();
+	public void exerciseSuccess() {
+		timeOfLastExercise = System.nanoTime();
 		
 		if (healthLevel >= 100 - REWARD_AMOUNT) {
 			healthLevel = 100;
@@ -68,7 +75,7 @@ public abstract class Pet {
 		}
 	}
 	
-	public void excersizeFailure() {
+	public void exerciseFailure() {
 		if (healthLevel <= PUNISHMENT_AMOUNT) {
 			healthLevel = 0;
 			isSleeping = true;
@@ -77,7 +84,9 @@ public abstract class Pet {
 			healthLevel -= PUNISHMENT_AMOUNT;
 		}
 	}
-
+	
+	protected abstract String getPetType();
 	protected abstract void initIdleAnimList();
 	protected abstract List<Image> getIdleAnimList();
+	
 }

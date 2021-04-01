@@ -2,6 +2,7 @@ package application;
 
 import java.io.FileNotFoundException;
 
+import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -14,7 +15,11 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 public class GameWindow {
-	Pet pet = new Corgi("Steven");
+	Pet pet = Main.pet;
+	SaveUtility su = new SaveUtility();
+	boolean exerciseActive = false;
+	boolean successfulExercise = false;
+	long exerciseTime = 0;
 	
 	// For main overlay
 	BorderPane mainPane = new BorderPane();
@@ -28,6 +33,7 @@ public class GameWindow {
 	Button exitButton = new Button("Save & Exit");
 	Button saveButton = new Button("Save");
 	Label healthLabel = new Label("Health Level: " + pet.getHealthLevel());
+	Button tempLoadButton = new Button("Load"); // TODO: Remove
 
 	// For center pet display
 	Image petImage = pet.getIdleAnimList().get(0);
@@ -35,8 +41,11 @@ public class GameWindow {
 
 	// For bottom dialogue/text-entry
 	TextArea dialogue = new TextArea("It's a great day to exercise! - " + pet.getPetName());
-	StackPane dialoguePane = new StackPane();
-	
+	Button yesButton = new Button("Yes");
+	Button noButton = new Button("No");
+	HBox answerPane = new HBox(yesButton, noButton);
+	BorderPane dialoguePane = new BorderPane();
+
 
 	/**
 	 * Creates the game window display
@@ -44,10 +53,12 @@ public class GameWindow {
 	 * @throws InterruptedException 
 	 */
 	public GameWindow(Stage stage) throws FileNotFoundException, InterruptedException {
+		GameWindow saveWindow = this;
+		
 		mainPane.setBackground(new Background(bgImage));
 		
 		// Setting up top component of our main pane - action bar
-		ToolBar toolBar = new ToolBar(exitButton, saveButton, healthLabel);
+		ToolBar toolBar = new ToolBar(exitButton, saveButton, healthLabel, tempLoadButton);
 		mainPane.setTop(toolBar);
 
 		// Setting up center component of our main pane - pet display
@@ -55,20 +66,75 @@ public class GameWindow {
 		mainPane.setMargin(petView, new Insets(250, 0, 0, 0));
 
 		// Setting up bottom component of our main pane - dialogue box / text area
+		yesButton.setMinWidth(200);
+		noButton.setMinWidth(200);
 		dialogue.setEditable(false);
 		dialoguePane.setMaxHeight(80);
-		dialoguePane.getChildren().setAll(dialogue);
+		dialoguePane.setCenter(dialogue);
 		mainPane.setBottom(dialoguePane);
+		
 
 		// Getting window ready to display
 		stage.setResizable(false);
 		stage.setTitle("Buff Bud");
 		stage.setScene(scene);
 		stage.show();
+		
+		// Setting up buttons in the action bar
+		saveButton.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent arg0) {
+				su.save(saveWindow);
+				dialogue.setText("Thanks for saving!");
+				dialoguePane.getChildren().setAll(dialogue);
+			}
+		});
+		exitButton.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent arg0) {
+				su.save(saveWindow);
+				dialogue.setText("Thanks for saving! See you soon!");
+				dialoguePane.getChildren().setAll(dialogue);
+				System.exit(0);
+			}
+		});
+		
+		// Setting up yes/no buttons
+		yesButton.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent arg0) {
+				// What happens if the exercise has started and the user is completing it
+				if (exerciseActive) {
+					pet.exerciseSuccess();
+					exerciseActive = false;
+					
+					dialogue.setText("Great job! " + pet.getPetName() + " appreciates this.");
+					dialoguePane.setBottom(null);
+					
+					exerciseTime = System.nanoTime();
+				} 
+				// What happens if the exercise is being started by the user
+				else {
+					exerciseTime = System.nanoTime();
+					exerciseActive = true;
+					
+					dialogue.setText("Good luck!");
+					dialoguePane.setBottom(null);
+				}
+			}
+		});
+		noButton.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent arg0) {
+					pet.exerciseFailure();
+					exerciseActive = false;
+					
+					dialogue.setText("That's too bad..." + pet.getPetName() + " is disappointed.");
+					dialoguePane.setBottom(null);
+					
+					exerciseTime = System.nanoTime();
+			}
+		});
 	}
 	
-	// TODO: Implement Save Feature
-	public static void save() {
-		
-	}
 }

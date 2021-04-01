@@ -1,0 +1,14 @@
+PetType,PetName,HealthLevel,TimeLastExercized,isSleeping
+Corgi,Steven,50,506029906324600,false
+Corgi,Steven,50,506171175574600,false
+Corgi,Steven,50,506251840778200,false
+Corgi,Steven,50,585725699439700,false
+Corgi,Steven,50,585851932446500,false
+Corgi,Steven,50,98486376448900,false
+Corgi,Steven,50,99478253481500,false
+Corgi,Steven,50,99631690555300,false
+Corgi,Steven,50,101028326240000,false
+Corgi,Steven,50,101165008777200,false
+Corgi,Steven,50,89395955562100,false
+Corgi,Steven,50,89996096016700,false
+Corgi,Steven,50,145934471885700,false
