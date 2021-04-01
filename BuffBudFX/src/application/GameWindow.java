@@ -133,6 +133,7 @@ public class GameWindow {
 					dialoguePane.setBottom(null);
 					
 					exerciseTime = System.nanoTime();
+					GameLoop.exerciseFound = false;
 			}
 		});
 	}
