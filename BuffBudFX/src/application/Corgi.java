@@ -5,10 +5,12 @@ import javafx.scene.image.Image;
 
 public class Corgi extends Pet {
 	LinkedList<Image> idleAnimList = new LinkedList<Image>();
+	LinkedList<Image> walkAnimList = new LinkedList<Image>();
 
 	public Corgi(String petName) {
 		super(petName);
 		this.initIdleAnimList();
+		this.initWalkAnimList();
 	}
 
 	public Corgi(String petName, int healthLevel, long timeOfLastExcersize, boolean isSleeping) {
@@ -22,6 +24,10 @@ public class Corgi extends Pet {
 
 	public List<Image> getIdleAnimList() {
 		return this.idleAnimList;
+	}
+	
+	public List<Image> getWalkAnimList() {
+		return this.walkAnimList;
 	}
 
 	public void initIdleAnimList() {
@@ -64,5 +70,11 @@ public class Corgi extends Pet {
 		this.idleAnimList.add(new Image("file:Images/Corgi/corgiSit1.png", 180, 132, true, false));
 		this.idleAnimList.add(new Image("file:Images/Corgi/corgiSit0.png", 180, 132, true, false));
 	}
-
+	
+	public void initWalkAnimList() {
+		this.walkAnimList.add(new Image("file:Images/Corgi/corgiWalk0.png", 180, 132, true, false));
+		this.walkAnimList.add(new Image("file:Images/Corgi/corgiWalk1.png", 180, 132, true, false));
+		this.walkAnimList.add(new Image("file:Images/Corgi/corgiWalk2.png", 180, 132, true, false));
+		this.walkAnimList.add(new Image("file:Images/Corgi/corgiWalk3.png", 180, 132, true, false));
+	}
 }

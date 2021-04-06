@@ -15,7 +15,6 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 public class GameWindow {
-	Pet pet = Main.pet;
 	SaveUtility su = new SaveUtility();
 	boolean exerciseActive = false;
 	boolean successfulExercise = false;
@@ -32,15 +31,14 @@ public class GameWindow {
 	// For top toolbar component
 	Button exitButton = new Button("Save & Exit");
 	Button saveButton = new Button("Save");
-	Label healthLabel = new Label("Health Level: " + pet.getHealthLevel());
-	Button tempLoadButton = new Button("Load"); // TODO: Remove
+	Label healthLabel = new Label("Health Level: " + Main.pet.getHealthLevel());
 
 	// For center pet display
-	Image petImage = pet.getIdleAnimList().get(0);
+	Image petImage = Main.pet.getIdleAnimList().get(0);
 	ImageView petView = new ImageView(petImage);
 
 	// For bottom dialogue/text-entry
-	TextArea dialogue = new TextArea("It's a great day to exercise! - " + pet.getPetName());
+	TextArea dialogue = new TextArea("It's a great day to exercise! - " + Main.pet.getPetName());
 	Button yesButton = new Button("Yes");
 	Button noButton = new Button("No");
 	HBox answerPane = new HBox(yesButton, noButton);
@@ -58,7 +56,7 @@ public class GameWindow {
 		mainPane.setBackground(new Background(bgImage));
 		
 		// Setting up top component of our main pane - action bar
-		ToolBar toolBar = new ToolBar(exitButton, saveButton, healthLabel, tempLoadButton);
+		ToolBar toolBar = new ToolBar(exitButton, saveButton, healthLabel);
 		mainPane.setTop(toolBar);
 
 		// Setting up center component of our main pane - pet display
@@ -105,10 +103,10 @@ public class GameWindow {
 			public void handle(ActionEvent arg0) {
 				// What happens if the exercise has started and the user is completing it
 				if (exerciseActive) {
-					pet.exerciseSuccess();
+					Main.pet.exerciseSuccess();
 					exerciseActive = false;
 					
-					dialogue.setText("Great job! " + pet.getPetName() + " appreciates this.");
+					dialogue.setText("Great job! " + Main.pet.getPetName() + " appreciates this.");
 					dialoguePane.setBottom(null);
 					
 					exerciseTime = System.nanoTime();
@@ -126,10 +124,10 @@ public class GameWindow {
 		noButton.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent arg0) {
-					pet.exerciseFailure();
+					Main.pet.exerciseFailure();
 					exerciseActive = false;
 					
-					dialogue.setText("That's too bad..." + pet.getPetName() + " is disappointed.");
+					dialogue.setText("That's too bad..." + Main.pet.getPetName() + " is disappointed.");
 					dialoguePane.setBottom(null);
 					
 					exerciseTime = System.nanoTime();

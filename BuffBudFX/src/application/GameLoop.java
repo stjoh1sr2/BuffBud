@@ -12,6 +12,7 @@ public class GameLoop extends AnimationTimer {
 	String[] exerciseList = { "go on a walk", "do jumping jacks", "jog in place" };
 	String lastExercise = "";
 	static boolean exerciseFound = false;
+	boolean animationDone = false;
 
 	public GameLoop(GameWindow gw) {
 		this.gw = gw;
@@ -22,7 +23,7 @@ public class GameLoop extends AnimationTimer {
 	@Override
 	public void handle(long now) {
 		// Loops after 15 minutes since exercise (if 4.5*10^11)
-		if (now - gw.pet.getTimeOfLastExercise() >= (long) (9 * Math.pow(10, 9 /* 11 */))
+		if (now - Main.pet.getTimeOfLastExercise() >= (long) (9 * Math.pow(10, 9 /* 11 */))
 				&& (now - gw.exerciseTime >= (long) (9 * Math.pow(10, 9 /* 11 */)))) {
 			if (!gw.exerciseActive && !exerciseFound) {
 				// TODO: Send out push notification
@@ -37,23 +38,15 @@ public class GameLoop extends AnimationTimer {
 			gw.dialogue.setText("Whew! 15 minutes is up. Did you complete the exercise?");
 			gw.dialoguePane.setBottom(gw.answerPane);
 			// TODO Reset to defaults?
+			animationDone = true;
 		}
 
 		// Loops about 60 times per second (animation)
 		if (now - lastFrameTime >= (long) (1.5 * Math.pow(10, 8))) {
-			gw.petImage = gw.pet.getIdleAnimList().get(animationNumber);
-			gw.petView.setImage(gw.petImage);
-
-			animationNumber++;
-			lastFrameTime = now;
-
-			// Reseting animation list if end of list is reached
-			if (animationNumber >= gw.pet.getIdleAnimList().size()) {
-				animationNumber = 0;
-			}
+			runAnimation(now);
 		}
 
-		gw.healthLabel.setText("Health Level: " + gw.pet.getHealthLevel());
+		gw.healthLabel.setText("Health Level: " + Main.pet.getHealthLevel());
 	}
 
 	private String randomExercise() {
@@ -70,6 +63,36 @@ public class GameLoop extends AnimationTimer {
 		}
 
 		return null;
+	}
+
+	private void runAnimation(long now) {
+		if (gw.exerciseActive && animationDone) {
+			gw.petImage = Main.pet.getWalkAnimList().get(animationNumber);
+			gw.petView.setImage(gw.petImage);
+			
+			animationNumber++;
+			lastFrameTime = now;
+			
+			// Reseting animation list if end of list is reached
+			if (animationNumber >= Main.pet.getWalkAnimList().size()) {
+				animationNumber = 0;
+			}
+		} else {
+			gw.petImage = Main.pet.getIdleAnimList().get(animationNumber);
+			gw.petView.setImage(gw.petImage);
+
+			animationNumber++;
+			lastFrameTime = now;
+
+			// Reseting animation list if end of list is reached
+			if (animationNumber >= Main.pet.getIdleAnimList().size()) {
+				animationNumber = 0;
+				
+				if (gw.exerciseActive) {
+					animationDone = true;
+				}
+			}
+		}
 	}
 
 }

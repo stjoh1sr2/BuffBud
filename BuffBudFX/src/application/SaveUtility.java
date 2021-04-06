@@ -20,8 +20,8 @@ public class SaveUtility {
 	}
 
 	public static void save(GameWindow gw) {
-		pw.append(String.format("%s,%s,%d,%d,%b\n", gw.pet.getPetType(), gw.pet.getPetName(), gw.pet.getHealthLevel(),
-				gw.pet.getTimeOfLastExercise(), gw.pet.isSleeping()));
+		pw.append(String.format("%s,%s,%d,%d,%b\n", Main.pet.getPetType(), Main.pet.getPetName(), Main.pet.getHealthLevel(),
+				Main.pet.getTimeOfLastExercise(), Main.pet.isSleeping()));
 		pw.close();
 	}
 
