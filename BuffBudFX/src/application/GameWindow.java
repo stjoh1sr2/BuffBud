@@ -15,7 +15,6 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 public class GameWindow {
-	SaveUtility su = new SaveUtility();
 	boolean exerciseActive = false;
 	boolean successfulExercise = false;
 	long exerciseTime = 0;
