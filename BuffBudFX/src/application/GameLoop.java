@@ -6,6 +6,7 @@ import javafx.scene.Scene;
 import javafx.scene.image.ImageView;
 
 public class GameLoop extends AnimationTimer {
+	final long EXERCISE_TIME = 0l;
 	GameWindow gw;
 	long lastFrameTime;
 	int animationNumber;

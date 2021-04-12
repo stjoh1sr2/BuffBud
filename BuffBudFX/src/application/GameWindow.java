@@ -24,13 +24,14 @@ public class GameWindow {
 	BorderPane mainPane = new BorderPane();
 	Scene scene = new Scene(mainPane, 400, 600);
 	
-	Image backgroundImage = new Image("file:Images/bg2.png");
+	Image backgroundImage = new Image("file:resources/Images/bg2.png");
 	BackgroundImage bgImage = new BackgroundImage(backgroundImage, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT,
 			BackgroundPosition.CENTER, new BackgroundSize(400, 600, false, false, false, false));
 
 	// For top toolbar component
 	Button exitButton = new Button("Save & Exit");
 	Button saveButton = new Button("Save");
+	Button resetButton = new Button("Reset Pet");
 	Label healthLabel = new Label("Health Level: " + Main.pet.getHealthLevel());
 
 	// For center pet display
@@ -56,7 +57,7 @@ public class GameWindow {
 		mainPane.setBackground(new Background(bgImage));
 		
 		// Setting up top component of our main pane - action bar
-		ToolBar toolBar = new ToolBar(exitButton, saveButton, healthLabel);
+		ToolBar toolBar = new ToolBar(exitButton, saveButton, resetButton, healthLabel);
 		mainPane.setTop(toolBar);
 
 		// Setting up center component of our main pane - pet display
@@ -70,30 +71,37 @@ public class GameWindow {
 		dialoguePane.setMaxHeight(80);
 		dialoguePane.setCenter(dialogue);
 		mainPane.setBottom(dialoguePane);
-		
 
 		// Getting window ready to display
 		stage.setResizable(false);
 		stage.setTitle("Buff Bud");
 		stage.setScene(scene);
 		stage.show();
+		stage.getIcons().add(new Image("file:resources/Images/BuffBudIcon.png"));
 		
 		// Setting up buttons in the action bar
 		saveButton.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent arg0) {
-				su.save(saveWindow);
-				dialogue.setText("Thanks for saving!");
-				dialoguePane.getChildren().setAll(dialogue);
+				Utility.save();
+				//dialogue.setText("Thanks for saving!");
+				//dialoguePane.getChildren().setAll(dialogue);
 			}
 		});
 		exitButton.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent arg0) {
-				su.save(saveWindow);
+				Utility.save();
 				dialogue.setText("Thanks for saving! See you soon!");
 				dialoguePane.getChildren().setAll(dialogue);
 				System.exit(0);
+			}
+		});
+		resetButton.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent arg0) {
+				IntroWindow intro = new IntroWindow(stage);
+				Main.pet = intro.pet;
 			}
 		});
 		
