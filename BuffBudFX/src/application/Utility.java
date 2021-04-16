@@ -13,10 +13,11 @@ public class Utility {
 		Scanner sc = null;
 
 		/**
-		 * If the file is empty then it will open the intro screen so the user can create a pet!
-		 * if the file has something in it that means the user has created a pet and will open the application
+		 * If the file is empty then it will open the intro screen so the user can
+		 * create a pet! if the file has something in it that means the user has created
+		 * a pet and will open the application
 		 **/
-		
+
 		try {
 			sc = new Scanner(file);
 			if (sc.hasNextLine() == true) {
@@ -53,17 +54,30 @@ public class Utility {
 		}
 
 		// Writes in file to save information about the pet
-		writer.println(Main.pet.getPetName() + "," + Main.pet.getHealthLevel() + "," + Main.pet.getTimeOfLastExercise());
+		writer.println(
+				Main.pet.getPetName() + "," + Main.pet.getHealthLevel() + "," + Main.pet.getTimeOfLastExercise());
 		writer.close();
 
 	}
-	
+
 	public static Pet loadPet() throws FileNotFoundException {
 		Scanner scnr = new Scanner(new File("resources/Pet.txt"));
 		String[] petString = scnr.next().split(",");
-		Corgi petToPass = new Corgi(petString[0], Integer.parseInt(petString[1]), Long.parseLong(petString[2]), false /*TODO*/);
-		
+		Corgi petToPass = new Corgi(petString[0], Integer.parseInt(petString[1]), Long.parseLong(petString[2]),
+				false /* TODO */);
+
 		return petToPass;
+	}
+
+	public static void clear() {
+		PrintWriter writer = null;
+		try {
+			writer = new PrintWriter("resources/Pet.txt");
+		} catch (FileNotFoundException e) {
+			System.err.println("An error has occurred - no Pet file found.");
+		}
+		writer.print("");
+		writer.close();
 	}
 
 }

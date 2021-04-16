@@ -88,7 +88,9 @@ public abstract class Pet {
 	protected abstract String getPetType();
 	protected abstract void initIdleAnimList();
 	protected abstract void initWalkAnimList();
+	protected abstract void initCelebAnimList();
 	protected abstract List<Image> getIdleAnimList();
 	protected abstract List<Image> getWalkAnimList();
+	protected abstract List<Image> getCelebAnimList();
 	
 }

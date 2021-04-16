@@ -2,6 +2,7 @@ package application;
 
 import java.io.FileNotFoundException;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
@@ -18,19 +19,23 @@ public class GameWindow {
 	boolean exerciseActive = false;
 	boolean successfulExercise = false;
 	long exerciseTime = 0;
-	
+	boolean toReset = false;
+	long resetStart;
+	Stage stage;
+
 	// For main overlay
 	BorderPane mainPane = new BorderPane();
 	Scene scene = new Scene(mainPane, 400, 600);
-	
+
 	Image backgroundImage = new Image("file:resources/Images/bg2.png");
-	BackgroundImage bgImage = new BackgroundImage(backgroundImage, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT,
-			BackgroundPosition.CENTER, new BackgroundSize(400, 600, false, false, false, false));
+	BackgroundImage bgImage = new BackgroundImage(backgroundImage, BackgroundRepeat.NO_REPEAT,
+			BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER,
+			new BackgroundSize(400, 600, false, false, false, false));
 
 	// For top toolbar component
 	Button exitButton = new Button("Save & Exit");
 	Button saveButton = new Button("Save");
-	Button resetButton = new Button("Reset Pet");
+	Button resetButton = new Button("Exit & Reset");
 	Label healthLabel = new Label("Health Level: " + Main.pet.getHealthLevel());
 
 	// For center pet display
@@ -44,19 +49,19 @@ public class GameWindow {
 	HBox answerPane = new HBox(yesButton, noButton);
 	BorderPane dialoguePane = new BorderPane();
 
-
 	/**
 	 * Creates the game window display
-	 * @throws FileNotFoundException 
-	 * @throws InterruptedException 
+	 * 
+	 * @throws FileNotFoundException
+	 * @throws InterruptedException
 	 */
-	public GameWindow(Stage stage) throws FileNotFoundException, InterruptedException {
-		GameWindow saveWindow = this;
-		
+	public GameWindow(Stage stage) {
+		this.stage = stage;
+
 		mainPane.setBackground(new Background(bgImage));
-		
+
 		// Setting up top component of our main pane - action bar
-		ToolBar toolBar = new ToolBar(exitButton, saveButton, resetButton, healthLabel);
+		ToolBar toolBar = new ToolBar(saveButton, exitButton, resetButton, healthLabel);
 		mainPane.setTop(toolBar);
 
 		// Setting up center component of our main pane - pet display
@@ -77,33 +82,35 @@ public class GameWindow {
 		stage.setScene(scene);
 		stage.show();
 		stage.getIcons().add(new Image("file:resources/Images/BuffBudIcon.png"));
-		
+
 		// Setting up buttons in the action bar
 		saveButton.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent arg0) {
 				Utility.save();
-				//dialogue.setText("Thanks for saving!");
-				//dialoguePane.getChildren().setAll(dialogue);
+				// dialogue.setText("Thanks for saving!");
+				// dialoguePane.getChildren().setAll(dialogue);
 			}
 		});
 		exitButton.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent arg0) {
 				Utility.save();
-				dialogue.setText("Thanks for saving! See you soon!");
-				dialoguePane.getChildren().setAll(dialogue);
 				System.exit(0);
 			}
 		});
 		resetButton.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent arg0) {
-				IntroWindow intro = new IntroWindow(stage);
-				Main.pet = intro.pet;
+				dialogue.setText(String.format("Bye! - %s\nThe next time you launch, a new pet will await.", Main.pet.getPetName()));
+				dialoguePane.setBottom(null);
+				mainPane.setTop(null);
+				mainPane.setMargin(petView, new Insets(285, 0, 0, 0));
+				toReset = true;
+				resetStart = System.nanoTime();
 			}
 		});
-		
+
 		// Setting up yes/no buttons
 		yesButton.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
@@ -112,17 +119,20 @@ public class GameWindow {
 				if (exerciseActive) {
 					Main.pet.exerciseSuccess();
 					exerciseActive = false;
-					
+
 					dialogue.setText("Great job! " + Main.pet.getPetName() + " appreciates this.");
 					dialoguePane.setBottom(null);
-					
+					Main.loop.nextAnim = "celeb";
+					successfulExercise = true;
+
 					exerciseTime = System.nanoTime();
-				} 
+				}
 				// What happens if the exercise is being started by the user
 				else {
 					exerciseTime = System.nanoTime();
 					exerciseActive = true;
-					
+					Main.loop.nextAnim = "walk";
+
 					dialogue.setText("Good luck!");
 					dialoguePane.setBottom(null);
 				}
@@ -131,16 +141,17 @@ public class GameWindow {
 		noButton.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent arg0) {
-					Main.pet.exerciseFailure();
-					exerciseActive = false;
-					
-					dialogue.setText("That's too bad..." + Main.pet.getPetName() + " is disappointed.");
-					dialoguePane.setBottom(null);
-					
-					exerciseTime = System.nanoTime();
-					GameLoop.exerciseFound = false;
+				Main.pet.exerciseFailure();
+				exerciseActive = false;
+				// Main.loop.nextAnim = "sad";
+
+				dialogue.setText("That's too bad..." + Main.pet.getPetName() + " is disappointed.");
+				dialoguePane.setBottom(null);
+
+				exerciseTime = System.nanoTime();
+				Main.loop.exerciseFound = false;
 			}
 		});
 	}
-	
+
 }

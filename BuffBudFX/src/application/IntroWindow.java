@@ -45,14 +45,9 @@ public class IntroWindow {
 			
 			//Opens up actual application after creating new pet
 			GameWindow instance;
-			try {
-				instance = new GameWindow(stage);
-				GameLoop loop = new GameLoop(instance);
-				loop.start();
-			} catch (FileNotFoundException | InterruptedException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
+			instance = new GameWindow(stage);
+			Main.loop = new GameLoop(instance);
+			Main.loop.start();
 		});
 
 		// Setting up Interface

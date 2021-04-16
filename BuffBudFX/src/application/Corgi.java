@@ -6,17 +6,20 @@ import javafx.scene.image.Image;
 public class Corgi extends Pet {
 	LinkedList<Image> idleAnimList = new LinkedList<Image>();
 	LinkedList<Image> walkAnimList = new LinkedList<Image>();
+	LinkedList<Image> celebAnimList = new LinkedList<Image>();
 
 	public Corgi(String petName) {
 		super(petName);
 		this.initIdleAnimList();
 		this.initWalkAnimList();
+		this.initCelebAnimList();
 	}
 
 	public Corgi(String petName, int healthLevel, long timeOfLastExcersize, boolean isSleeping) {
 		super(petName, healthLevel, timeOfLastExcersize, isSleeping);
 		this.initIdleAnimList();
 		this.initWalkAnimList();
+		this.initCelebAnimList();
 	}
 
 	public String getPetType() {
@@ -29,6 +32,10 @@ public class Corgi extends Pet {
 	
 	public List<Image> getWalkAnimList() {
 		return this.walkAnimList;
+	}
+	
+	public List<Image> getCelebAnimList() {
+		return this.celebAnimList;
 	}
 
 	public void initIdleAnimList() {
@@ -77,5 +84,17 @@ public class Corgi extends Pet {
 		this.walkAnimList.add(new Image("file:resources/Images/Corgi/corgiWalk1.png", 180, 132, true, false));
 		this.walkAnimList.add(new Image("file:resources/Images/Corgi/corgiWalk2.png", 180, 132, true, false));
 		this.walkAnimList.add(new Image("file:resources/Images/Corgi/corgiWalk3.png", 180, 132, true, false));
+	}
+	
+	public void initCelebAnimList() {
+		this.celebAnimList.add(new Image("file:resources/Images/Corgi/corgiJump0.png", 180, 132, true, false));
+		this.celebAnimList.add(new Image("file:resources/Images/Corgi/corgiJump1.png", 180, 132, true, false));
+		this.celebAnimList.add(new Image("file:resources/Images/Corgi/corgiJump2.png", 180, 132, true, false));
+		this.celebAnimList.add(new Image("file:resources/Images/Corgi/corgiJump3.png", 180, 132, true, false));
+		this.celebAnimList.add(new Image("file:resources/Images/Corgi/corgiJump4.png", 180, 132, true, false));
+		this.celebAnimList.add(new Image("file:resources/Images/Corgi/corgiJump5.png", 180, 132, true, false));
+		this.celebAnimList.add(new Image("file:resources/Images/Corgi/corgiJump6.png", 180, 132, true, false));
+		this.celebAnimList.add(new Image("file:resources/Images/Corgi/corgiJump7.png", 180, 132, true, false));
+		this.celebAnimList.add(new Image("file:resources/Images/Corgi/corgiJump8.png", 180, 132, true, false));
 	}
 }

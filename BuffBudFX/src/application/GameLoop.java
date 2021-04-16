@@ -6,14 +6,16 @@ import javafx.scene.Scene;
 import javafx.scene.image.ImageView;
 
 public class GameLoop extends AnimationTimer {
-	final long EXERCISE_TIME = 0l;
+	final long EXERCISE_TIME = (long) (9 * Math.pow(10, 9 /* 11 */));
 	GameWindow gw;
 	long lastFrameTime;
 	int animationNumber;
 	String[] exerciseList = { "go on a walk", "do jumping jacks", "jog in place" };
 	String lastExercise = "";
-	static boolean exerciseFound = false;
+	boolean exerciseFound = false;
 	boolean animationDone = false;
+	protected String nextAnim = "idle";
+	protected String currAnim = "idle";
 
 	public GameLoop(GameWindow gw) {
 		this.gw = gw;
@@ -23,9 +25,8 @@ public class GameLoop extends AnimationTimer {
 
 	@Override
 	public void handle(long now) {
-		// Loops after 15 minutes since exercise (if 4.5*10^11)
-		if (now - Main.pet.getTimeOfLastExercise() >= (long) (9 * Math.pow(10, 9 /* 11 */))
-				&& (now - gw.exerciseTime >= (long) (9 * Math.pow(10, 9 /* 11 */)))) {
+		// Loops after EXERCISE_TIME nanoseconds since exercise
+		if (now - Main.pet.getTimeOfLastExercise() >= EXERCISE_TIME && (now - gw.exerciseTime >= EXERCISE_TIME) && !gw.toReset) {
 			if (!gw.exerciseActive && !exerciseFound) {
 				// TODO: Send out push notification
 				String currentExercise = randomExercise();
@@ -34,12 +35,25 @@ public class GameLoop extends AnimationTimer {
 			}
 		}
 
-		// Loop for when an exercise is going on (15 minutes if 4.5*10 ^ 11)
-		if (now - gw.exerciseTime >= (long) (9 * Math.pow(10, 9 /* 11 */)) && gw.exerciseActive) {
-			gw.dialogue.setText("Whew! 15 minutes is up. Did you complete the exercise?");
+		// Loop for when an exercise is going on
+		if (now - gw.exerciseTime >= EXERCISE_TIME && gw.exerciseActive&& !gw.toReset) {
+			gw.dialogue.setText("Whew! 15 minutes is up. Did you complete the exercise?"); // TODO
 			gw.dialoguePane.setBottom(gw.answerPane);
 			// TODO Reset to defaults?
 			animationDone = true;
+			exerciseFound = false;
+			nextAnim = "idle";
+		}
+
+		// Limiting celeb animation
+		if (now - gw.exerciseTime >= (long) (EXERCISE_TIME / 3) && currAnim.equals("celeb")) {
+			nextAnim = "idle";
+		}
+		
+		// Sending out reset message
+		if (now - gw.resetStart >= (long) (5 * Math.pow(10, 9)) && gw.toReset) {
+			Utility.clear();
+			gw.stage.close();
 		}
 
 		// Loops about 60 times per second (animation)
@@ -67,30 +81,52 @@ public class GameLoop extends AnimationTimer {
 	}
 
 	private void runAnimation(long now) {
-		if (gw.exerciseActive && animationDone) {
+		// TODO: REMOVE System.out.println(currAnim + " -> " + nextAnim + ": " + animationNumber + ", " + Thread.currentThread()); // TODO: REMOVE
+		if (currAnim.equals("walk")) {
 			gw.petImage = Main.pet.getWalkAnimList().get(animationNumber);
 			gw.petView.setImage(gw.petImage);
-			
+
 			animationNumber++;
 			lastFrameTime = now;
-			
-			// Reseting animation list if end of list is reached
+
 			if (animationNumber >= Main.pet.getWalkAnimList().size()) {
 				animationNumber = 0;
+
+				if (!nextAnim.equals("walk")) {
+					currAnim = nextAnim;
+				}
 			}
-		} else {
+		} else if (currAnim.equals("idle")) {
 			gw.petImage = Main.pet.getIdleAnimList().get(animationNumber);
 			gw.petView.setImage(gw.petImage);
 
 			animationNumber++;
 			lastFrameTime = now;
 
-			// Reseting animation list if end of list is reached
-			if (animationNumber >= Main.pet.getIdleAnimList().size()) {
+			if (animationNumber == 8 || animationNumber == 17) {
+				if (!nextAnim.equals("idle")) {
+					animationNumber = 0;
+					currAnim = nextAnim;
+				}
+			} else if (animationNumber >= Main.pet.getIdleAnimList().size()) {
 				animationNumber = 0;
-				
-				if (gw.exerciseActive) {
-					animationDone = true;
+
+				if (!nextAnim.equals("idle")) {
+					currAnim = nextAnim;
+				}
+			}
+		} else if (currAnim.equals("celeb")) {
+			gw.petImage = Main.pet.getCelebAnimList().get(animationNumber);
+			gw.petView.setImage(gw.petImage);
+
+			animationNumber++;
+			lastFrameTime = now;
+
+			if (animationNumber >= Main.pet.getCelebAnimList().size()) {
+				animationNumber = 0;
+
+				if (!nextAnim.equals("celeb")) {
+					currAnim = nextAnim;
 				}
 			}
 		}
