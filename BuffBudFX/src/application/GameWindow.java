@@ -19,6 +19,7 @@ public class GameWindow {
 	boolean exerciseActive = false;
 	boolean successfulExercise = false;
 	long exerciseTime = 0;
+	long timeOfFailure = 0;
 	boolean toReset = false;
 	long resetStart;
 	Stage stage;
@@ -143,7 +144,8 @@ public class GameWindow {
 			public void handle(ActionEvent arg0) {
 				Main.pet.exerciseFailure();
 				exerciseActive = false;
-				// Main.loop.nextAnim = "sad";
+				Main.loop.nextAnim = "sad";
+				timeOfFailure = System.nanoTime();
 
 				dialogue.setText("That's too bad..." + Main.pet.getPetName() + " is disappointed.");
 				dialoguePane.setBottom(null);

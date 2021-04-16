@@ -26,7 +26,8 @@ public class GameLoop extends AnimationTimer {
 	@Override
 	public void handle(long now) {
 		// Loops after EXERCISE_TIME nanoseconds since exercise
-		if (now - Main.pet.getTimeOfLastExercise() >= EXERCISE_TIME && (now - gw.exerciseTime >= EXERCISE_TIME) && !gw.toReset) {
+		if (now - Main.pet.getTimeOfLastExercise() >= EXERCISE_TIME && (now - gw.exerciseTime >= EXERCISE_TIME)
+				&& !gw.toReset) {
 			if (!gw.exerciseActive && !exerciseFound) {
 				// TODO: Send out push notification
 				String currentExercise = randomExercise();
@@ -36,8 +37,8 @@ public class GameLoop extends AnimationTimer {
 		}
 
 		// Loop for when an exercise is going on
-		if (now - gw.exerciseTime >= EXERCISE_TIME && gw.exerciseActive&& !gw.toReset) {
-			gw.dialogue.setText("Whew! 15 minutes is up. Did you complete the exercise?"); // TODO
+		if (now - gw.exerciseTime >= EXERCISE_TIME && gw.exerciseActive && !gw.toReset) {
+			gw.dialogue.setText("Whew! 5 seconds is up. Did you complete the exercise?"); // TODO
 			gw.dialoguePane.setBottom(gw.answerPane);
 			// TODO Reset to defaults?
 			animationDone = true;
@@ -46,10 +47,15 @@ public class GameLoop extends AnimationTimer {
 		}
 
 		// Limiting celeb animation
-		if (now - gw.exerciseTime >= (long) (EXERCISE_TIME / 3) && currAnim.equals("celeb")) {
+		if (now - gw.exerciseTime >= (long) (EXERCISE_TIME / 3) && (currAnim.equals("celeb"))) {
 			nextAnim = "idle";
 		}
-		
+
+		// Limiting sad animation
+		if (now - gw.timeOfFailure >= (long) (EXERCISE_TIME / 1.5) && (currAnim.equals("sad"))) {
+			nextAnim = "idle";
+		}
+
 		// Sending out reset message
 		if (now - gw.resetStart >= (long) (5 * Math.pow(10, 9)) && gw.toReset) {
 			Utility.clear();
@@ -81,7 +87,8 @@ public class GameLoop extends AnimationTimer {
 	}
 
 	private void runAnimation(long now) {
-		// TODO: REMOVE System.out.println(currAnim + " -> " + nextAnim + ": " + animationNumber + ", " + Thread.currentThread()); // TODO: REMOVE
+		// TODO: REMOVE System.out.println(currAnim + " -> " + nextAnim + ": " +
+		// animationNumber + ", " + Thread.currentThread()); // TODO: REMOVE
 		if (currAnim.equals("walk")) {
 			gw.petImage = Main.pet.getWalkAnimList().get(animationNumber);
 			gw.petView.setImage(gw.petImage);
@@ -129,7 +136,20 @@ public class GameLoop extends AnimationTimer {
 					currAnim = nextAnim;
 				}
 			}
+		} else if (currAnim.equals("sad")) {
+			gw.petImage = Main.pet.getSadAnimList().get(animationNumber);
+			gw.petView.setImage(gw.petImage);
+
+			animationNumber++;
+			lastFrameTime = now;
+
+			if (animationNumber >= Main.pet.getSadAnimList().size()) {
+				animationNumber = 0;
+
+				if (!nextAnim.equals("sad")) {
+					currAnim = nextAnim;
+				}
+			}
 		}
 	}
-
 }

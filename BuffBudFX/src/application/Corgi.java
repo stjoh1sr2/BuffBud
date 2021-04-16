@@ -7,12 +7,14 @@ public class Corgi extends Pet {
 	LinkedList<Image> idleAnimList = new LinkedList<Image>();
 	LinkedList<Image> walkAnimList = new LinkedList<Image>();
 	LinkedList<Image> celebAnimList = new LinkedList<Image>();
+	LinkedList<Image> sadAnimList = new LinkedList<Image>();
 
 	public Corgi(String petName) {
 		super(petName);
 		this.initIdleAnimList();
 		this.initWalkAnimList();
 		this.initCelebAnimList();
+		this.initSadAnimList();
 	}
 
 	public Corgi(String petName, int healthLevel, long timeOfLastExcersize, boolean isSleeping) {
@@ -20,6 +22,7 @@ public class Corgi extends Pet {
 		this.initIdleAnimList();
 		this.initWalkAnimList();
 		this.initCelebAnimList();
+		this.initSadAnimList();
 	}
 
 	public String getPetType() {
@@ -36,6 +39,10 @@ public class Corgi extends Pet {
 	
 	public List<Image> getCelebAnimList() {
 		return this.celebAnimList;
+	}
+	
+	public List<Image> getSadAnimList() {
+		return this.sadAnimList;
 	}
 
 	public void initIdleAnimList() {
@@ -96,5 +103,12 @@ public class Corgi extends Pet {
 		this.celebAnimList.add(new Image("file:resources/Images/Corgi/corgiJump6.png", 180, 132, true, false));
 		this.celebAnimList.add(new Image("file:resources/Images/Corgi/corgiJump7.png", 180, 132, true, false));
 		this.celebAnimList.add(new Image("file:resources/Images/Corgi/corgiJump8.png", 180, 132, true, false));
+	}
+	
+	public void initSadAnimList() {
+		this.sadAnimList.add(new Image("file:resources/Images/Corgi/corgiSad0.png", 180, 132, true, false));
+		this.sadAnimList.add(new Image("file:resources/Images/Corgi/corgiSad1.png", 180, 132, true, false));
+		this.sadAnimList.add(new Image("file:resources/Images/Corgi/corgiSad2.png", 180, 132, true, false));
+		this.sadAnimList.add(new Image("file:resources/Images/Corgi/corgiSad3.png", 180, 132, true, false));
 	}
 }
