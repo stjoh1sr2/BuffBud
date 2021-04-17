@@ -1,10 +1,12 @@
 package application;
 
-import java.io.FileNotFoundException;
+/**
+ * Launches the BuffBud program.
+ * 
+ * UPDATED: 16 APR 2021
+ */
 
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.stage.Stage;
 
 public class Main extends Application {
@@ -23,7 +25,7 @@ public class Main extends Application {
 			loop = new GameLoop(instance);
 			loop.start();
 		}
-		
+
 	}
 
 	public static void main(String[] args) {

@@ -1,27 +1,31 @@
 package application;
 
+/**
+ * Acts as the primary window for the BuffBud game.
+ * Displays the pet, options to interact with the pet,
+ * and messages about exercising.
+ * 
+ * UPDATED: 16 APR 2021
+ */
+
 import java.io.FileNotFoundException;
 
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
-import javafx.scene.canvas.*;
 import javafx.scene.control.*;
 import javafx.scene.image.*;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
-import javafx.util.Duration;
 
 public class GameWindow {
-	boolean exerciseActive = false;
-	boolean successfulExercise = false;
-	long exerciseTime = 0;
-	long timeOfFailure = 0;
-	boolean toReset = false;
-	long resetStart;
+	boolean exerciseActive = false; // tells whether or not an exercise is ongoing
+	boolean successfulExercise = false; // tells if an exercise was completed well
+	long exerciseTime = 0; // placeholder for the time an exercise was started
+	long timeOfFailure = 0; // placeholder for the time an exercise failed
+	boolean toReset = false; // flags if the user has chosen to "Exit & Reset"
+	long resetStart; // the time that a reset was originally flagged
 	Stage stage;
 
 	// For main overlay
@@ -38,7 +42,6 @@ public class GameWindow {
 	Button saveButton = new Button("Save");
 	Button resetButton = new Button("Exit & Reset");
 	Label healthLabel = new Label("Health Level: " + Main.pet.getHealthLevel());
-	Button deathButton = new Button("Death Tester"); // TODO: REMOVE
 
 	// For center pet display
 	Image petImage = Main.pet.getIdleAnimList().get(0);
@@ -60,10 +63,11 @@ public class GameWindow {
 	public GameWindow(Stage stage) {
 		this.stage = stage;
 
+		// Setting background of main GameWindow's main overlay
 		mainPane.setBackground(new Background(bgImage));
 
 		// Setting up top component of our main pane - action bar
-		ToolBar toolBar = new ToolBar(saveButton, exitButton, resetButton, healthLabel, deathButton /* TODO: REMOVE */);
+		ToolBar toolBar = new ToolBar(saveButton, exitButton, resetButton, healthLabel);
 		mainPane.setTop(toolBar);
 
 		// Setting up center component of our main pane - pet display
@@ -90,8 +94,6 @@ public class GameWindow {
 			@Override
 			public void handle(ActionEvent arg0) {
 				Utility.save();
-				// dialogue.setText("Thanks for saving!");
-				// dialoguePane.getChildren().setAll(dialogue);
 			}
 		});
 		exitButton.setOnAction(new EventHandler<ActionEvent>() {
@@ -104,11 +106,19 @@ public class GameWindow {
 		resetButton.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent arg0) {
+				// Setting goodbye message
 				dialogue.setText(String.format("Bye! - %s\nThe next time you launch, a new pet will await.",
 						Main.pet.getPetName()));
+
+				// Clearing out clickable buttons to prevent misclicks
 				dialoguePane.setBottom(null);
 				mainPane.setTop(null);
+
+				// Reforming pet location relative to the overlay
 				mainPane.setMargin(petView, new Insets(285, 0, 0, 0));
+
+				// Flagging so that GameLoop can reset following time to display the goodbye
+				// message
 				toReset = true;
 				resetStart = System.nanoTime();
 			}
@@ -123,23 +133,30 @@ public class GameWindow {
 					Main.pet.exerciseSuccess();
 					exerciseActive = false;
 
+					// Setting thank-you message
 					dialogue.setText("Great job! " + Main.pet.getPetName() + " appreciates this.");
 					dialoguePane.setBottom(null);
+
+					// Flagging for celebratory animation
 					if (!Main.pet.isSleeping()) {
 						Main.loop.nextAnim = "celeb";
 					}
 					successfulExercise = true;
 
+					// Updating exerciseTime
 					exerciseTime = System.nanoTime();
 				}
 				// What happens if the exercise is being started by the user
 				else {
 					exerciseTime = System.nanoTime();
 					exerciseActive = true;
+
+					// Flagging for walking animation
 					if (!Main.pet.isSleeping()) {
 						Main.loop.nextAnim = "walk";
 					}
 
+					// Setting good luck message and removing buttons
 					dialogue.setText("Good luck!");
 					dialoguePane.setBottom(null);
 				}
@@ -150,22 +167,18 @@ public class GameWindow {
 			public void handle(ActionEvent arg0) {
 				Main.pet.exerciseFailure();
 				exerciseActive = false;
+
+				// Flagging for sad animation
 				Main.loop.nextAnim = "sad";
+
 				timeOfFailure = System.nanoTime();
 
+				// Setting out failure message
 				dialogue.setText("That's too bad..." + Main.pet.getPetName() + " is disappointed.");
 				dialoguePane.setBottom(null);
 
 				exerciseTime = System.nanoTime();
 				Main.loop.exerciseFound = false;
-			}
-		});
-
-		// TODO: REMOVE
-		deathButton.setOnAction(new EventHandler<ActionEvent>() {
-			@Override
-			public void handle(ActionEvent arg0) {
-				Main.pet.setHealthLevel(0);
 			}
 		});
 	}
