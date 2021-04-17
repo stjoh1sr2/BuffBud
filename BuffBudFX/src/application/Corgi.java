@@ -8,6 +8,8 @@ public class Corgi extends Pet {
 	LinkedList<Image> walkAnimList = new LinkedList<Image>();
 	LinkedList<Image> celebAnimList = new LinkedList<Image>();
 	LinkedList<Image> sadAnimList = new LinkedList<Image>();
+	LinkedList<Image> deathAnimList = new LinkedList<Image>();
+	LinkedList<Image> ghostAnimList = new LinkedList<Image>();
 
 	public Corgi(String petName) {
 		super(petName);
@@ -15,6 +17,8 @@ public class Corgi extends Pet {
 		this.initWalkAnimList();
 		this.initCelebAnimList();
 		this.initSadAnimList();
+		this.initDeathAnimList(); // TODO
+		this.initGhostAnimList(); // TODO
 	}
 
 	public Corgi(String petName, int healthLevel, long timeOfLastExcersize, boolean isSleeping) {
@@ -23,6 +27,8 @@ public class Corgi extends Pet {
 		this.initWalkAnimList();
 		this.initCelebAnimList();
 		this.initSadAnimList();
+		this.initDeathAnimList(); // TODO
+		this.initGhostAnimList(); // TODO
 	}
 
 	public String getPetType() {
@@ -43,6 +49,16 @@ public class Corgi extends Pet {
 	
 	public List<Image> getSadAnimList() {
 		return this.sadAnimList;
+	}
+	
+	// TODO: REMOVE?
+	public List<Image> getDeathAnimList() {
+		return this.deathAnimList;
+	}
+	
+	// TODO: REMOVE?
+	public List<Image> getGhostAnimList() {
+		return this.ghostAnimList;
 	}
 
 	public void initIdleAnimList() {
@@ -110,5 +126,25 @@ public class Corgi extends Pet {
 		this.sadAnimList.add(new Image("file:resources/Images/Corgi/corgiSad1.png", 180, 132, true, false));
 		this.sadAnimList.add(new Image("file:resources/Images/Corgi/corgiSad2.png", 180, 132, true, false));
 		this.sadAnimList.add(new Image("file:resources/Images/Corgi/corgiSad3.png", 180, 132, true, false));
+	}
+	
+	// TODO: REMOVE?
+	public void initDeathAnimList() {
+		this.deathAnimList.add(new Image("file:resources/Images/Corgi/corgiDeath0.png", 180, 132, true, false));
+		this.deathAnimList.add(new Image("file:resources/Images/Corgi/corgiDeath1.png", 180, 132, true, false));
+		this.deathAnimList.add(new Image("file:resources/Images/Corgi/corgiDeath2.png", 180, 132, true, false));
+		this.deathAnimList.add(new Image("file:resources/Images/Corgi/corgiDeath3.png", 180, 132, true, false));
+		this.deathAnimList.add(new Image("file:resources/Images/Corgi/corgiDeath4.png", 180, 132, true, false));
+		this.deathAnimList.add(new Image("file:resources/Images/Corgi/corgiDeath5.png", 180, 132, true, false));
+	}
+	
+	// TODO: REMOVE?
+	public void initGhostAnimList() {
+		this.ghostAnimList.add(new Image("file:resources/Images/Corgi/corgiGhost0.png", 180, 132, true, false));
+		this.ghostAnimList.add(new Image("file:resources/Images/Corgi/corgiGhost1.png", 180, 132, true, false));
+		this.ghostAnimList.add(new Image("file:resources/Images/Corgi/corgiGhost2.png", 180, 132, true, false));
+		this.ghostAnimList.add(new Image("file:resources/Images/Corgi/corgiGhost3.png", 180, 132, true, false));
+		this.ghostAnimList.add(new Image("file:resources/Images/Corgi/corgiGhost4.png", 180, 132, true, false));
+		this.ghostAnimList.add(new Image("file:resources/Images/Corgi/corgiGhost5.png", 180, 132, true, false));
 	}
 }

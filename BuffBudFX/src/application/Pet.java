@@ -90,9 +90,13 @@ public abstract class Pet {
 	protected abstract void initWalkAnimList();
 	protected abstract void initCelebAnimList();
 	protected abstract void initSadAnimList();
+	protected abstract void initDeathAnimList(); // TODO: REMOVE?
+	protected abstract void initGhostAnimList(); // TODO: REMOVE?
 	protected abstract List<Image> getIdleAnimList();
 	protected abstract List<Image> getWalkAnimList();
 	protected abstract List<Image> getCelebAnimList();
 	protected abstract List<Image> getSadAnimList();
+	protected abstract List<Image> getDeathAnimList(); // TODO: REMOVE?
+	protected abstract List<Image> getGhostAnimList();
 	
 }

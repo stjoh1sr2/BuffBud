@@ -43,16 +43,20 @@ public class GameLoop extends AnimationTimer {
 			// TODO Reset to defaults?
 			animationDone = true;
 			exerciseFound = false;
-			nextAnim = "idle";
+			if (!Main.pet.isSleeping()) {
+				nextAnim = "idle";
+			} else {
+				// TODO: nextAnim = "revive";
+			}
 		}
 
 		// Limiting celeb animation
-		if (now - gw.exerciseTime >= (long) (EXERCISE_TIME / 3) && (currAnim.equals("celeb"))) {
+		if (now - gw.exerciseTime >= (long) (EXERCISE_TIME / 3) && (currAnim.equals("celeb")) && !Main.pet.isSleeping()) {
 			nextAnim = "idle";
 		}
 
 		// Limiting sad animation
-		if (now - gw.timeOfFailure >= (long) (EXERCISE_TIME / 1.5) && (currAnim.equals("sad"))) {
+		if (now - gw.timeOfFailure >= (long) (EXERCISE_TIME / 1.5) && (currAnim.equals("sad")) && !Main.pet.isSleeping()) {
 			nextAnim = "idle";
 		}
 
@@ -60,6 +64,20 @@ public class GameLoop extends AnimationTimer {
 		if (now - gw.resetStart >= (long) (5 * Math.pow(10, 9)) && gw.toReset) {
 			Utility.clear();
 			gw.stage.close();
+		}
+
+		// Setting animation patterns for a ghost pet
+		if (Main.pet.getHealthLevel() <= 15) {
+			Main.pet.setSleeping(true);
+			if (!currAnim.equals("death") && !currAnim.equals("ghost")) {
+				nextAnim = "death";
+			}
+		}
+
+		// Setting condition to bring ghost pet back to life
+		if (Main.pet.isSleeping() && Main.pet.getHealthLevel() > 15) {
+			Main.pet.setSleeping(false);
+			nextAnim = "revive";
 		}
 
 		// Loops about 60 times per second (animation)
@@ -87,8 +105,8 @@ public class GameLoop extends AnimationTimer {
 	}
 
 	private void runAnimation(long now) {
-		// TODO: REMOVE System.out.println(currAnim + " -> " + nextAnim + ": " +
-		// animationNumber + ", " + Thread.currentThread()); // TODO: REMOVE
+		//System.out.println(currAnim + " -> " + nextAnim + ": " +
+		//		animationNumber + ", " + Thread.currentThread()); // TODO: REMOVE
 		if (currAnim.equals("walk")) {
 			gw.petImage = Main.pet.getWalkAnimList().get(animationNumber);
 			gw.petView.setImage(gw.petImage);
@@ -150,6 +168,49 @@ public class GameLoop extends AnimationTimer {
 					currAnim = nextAnim;
 				}
 			}
-		}
+		} else if (currAnim.equals("death")) { // TODO: REMOVE????
+			gw.petImage = Main.pet.getDeathAnimList().get(animationNumber);
+			gw.petView.setImage(gw.petImage);
+			nextAnim = "ghost";
+
+			animationNumber++;
+			lastFrameTime = now;
+
+			if (animationNumber >= Main.pet.getDeathAnimList().size()) {
+				animationNumber = 0;
+
+				currAnim = nextAnim;
+			}
+		} else if (currAnim.equals("ghost")) { // TODO: REMOVE????
+			gw.petImage = Main.pet.getGhostAnimList().get(animationNumber);
+			gw.petView.setImage(gw.petImage);
+
+			animationNumber++;
+			lastFrameTime = now;
+
+			if (animationNumber >= Main.pet.getGhostAnimList().size()) {
+				animationNumber = 0;
+
+				if (nextAnim.equals("revive")) {
+					currAnim = "revive";
+				} else {
+					nextAnim = "ghost";
+				}
+			}
+		} else if (currAnim.equals("revive")) { // TODO: REMOVE????
+			int reverseIndex = Main.pet.getDeathAnimList().size() - 1;
+			gw.petImage = Main.pet.getDeathAnimList().get(reverseIndex - animationNumber);
+			gw.petView.setImage(gw.petImage);
+			nextAnim = "idle";
+
+			animationNumber++;
+			lastFrameTime = now;
+
+			if (animationNumber >= Main.pet.getGhostAnimList().size()) {
+				animationNumber = 0;
+
+				currAnim = nextAnim;
+			}
+		} 
 	}
 }

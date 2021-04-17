@@ -38,6 +38,7 @@ public class GameWindow {
 	Button saveButton = new Button("Save");
 	Button resetButton = new Button("Exit & Reset");
 	Label healthLabel = new Label("Health Level: " + Main.pet.getHealthLevel());
+	Button deathButton = new Button("Death Tester"); // TODO: REMOVE
 
 	// For center pet display
 	Image petImage = Main.pet.getIdleAnimList().get(0);
@@ -62,7 +63,7 @@ public class GameWindow {
 		mainPane.setBackground(new Background(bgImage));
 
 		// Setting up top component of our main pane - action bar
-		ToolBar toolBar = new ToolBar(saveButton, exitButton, resetButton, healthLabel);
+		ToolBar toolBar = new ToolBar(saveButton, exitButton, resetButton, healthLabel, deathButton /* TODO: REMOVE */);
 		mainPane.setTop(toolBar);
 
 		// Setting up center component of our main pane - pet display
@@ -103,7 +104,8 @@ public class GameWindow {
 		resetButton.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent arg0) {
-				dialogue.setText(String.format("Bye! - %s\nThe next time you launch, a new pet will await.", Main.pet.getPetName()));
+				dialogue.setText(String.format("Bye! - %s\nThe next time you launch, a new pet will await.",
+						Main.pet.getPetName()));
 				dialoguePane.setBottom(null);
 				mainPane.setTop(null);
 				mainPane.setMargin(petView, new Insets(285, 0, 0, 0));
@@ -123,7 +125,9 @@ public class GameWindow {
 
 					dialogue.setText("Great job! " + Main.pet.getPetName() + " appreciates this.");
 					dialoguePane.setBottom(null);
-					Main.loop.nextAnim = "celeb";
+					if (!Main.pet.isSleeping()) {
+						Main.loop.nextAnim = "celeb";
+					}
 					successfulExercise = true;
 
 					exerciseTime = System.nanoTime();
@@ -132,7 +136,9 @@ public class GameWindow {
 				else {
 					exerciseTime = System.nanoTime();
 					exerciseActive = true;
-					Main.loop.nextAnim = "walk";
+					if (!Main.pet.isSleeping()) {
+						Main.loop.nextAnim = "walk";
+					}
 
 					dialogue.setText("Good luck!");
 					dialoguePane.setBottom(null);
@@ -152,6 +158,14 @@ public class GameWindow {
 
 				exerciseTime = System.nanoTime();
 				Main.loop.exerciseFound = false;
+			}
+		});
+
+		// TODO: REMOVE
+		deathButton.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent arg0) {
+				Main.pet.setHealthLevel(0);
 			}
 		});
 	}
