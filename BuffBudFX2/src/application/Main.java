@@ -17,6 +17,7 @@ public class Main extends Application {
 
 	@Override
 	public void start(Stage stage) throws Exception {
+
 		// If readFile returns false, set up new pet else open up already created pet
 		if (Utility.readFile() == false) {
 			IntroWindow intro = new IntroWindow(stage);
@@ -27,6 +28,8 @@ public class Main extends Application {
 			loop = new GameLoop(instance);
 			loop.start();
 		}
+
+		NotificationApp na = new NotificationApp(stage);
 
 	}
 
