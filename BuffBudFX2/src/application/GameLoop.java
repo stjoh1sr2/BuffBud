@@ -76,12 +76,7 @@ public class GameLoop extends AnimationTimer {
 
 		// Sending out reset message if a reset is intiated in GameWindow
 		if (now - gw.resetStart >= (long) (5 * Math.pow(10, 9)) && gw.toReset) {
-			try {
-				Utility.clear();
-			} catch (URISyntaxException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			Utility.clear();
 			gw.stage.close();
 		}
 

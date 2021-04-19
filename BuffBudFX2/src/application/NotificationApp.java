@@ -132,7 +132,7 @@ public class NotificationApp /* extends Application */ {
 		primaryStage.setTitle("Buff Bud Notification");
 		primaryStage.setResizable(false);
 		primaryStage.setAlwaysOnTop(true);
-		stage.getIcons().add(new Image(this.getClass().getResourceAsStream("/Images/BuffBudIcon.png")));
+		primaryStage.getIcons().add(new Image(this.getClass().getResourceAsStream("/Images/BuffBudIcon.png")));
 
 		// message will blink to new one
 		blinkNewMessage.play();
@@ -140,7 +140,7 @@ public class NotificationApp /* extends Application */ {
 		// simulating notification
 		// notificaiton window will pop up after entered minutes
 		Timeline notificationTime = new Timeline(new KeyFrame(Duration.millis(milliseconds), event -> {
-			if (!gwStage.isFocused()) {
+			if (!gwStage.isFocused() && !Main.loop.equals(null)) {
 				primaryStage.show();
 			}
 		}));

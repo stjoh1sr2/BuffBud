@@ -5,10 +5,8 @@ package application;
  * Displays the pet, options to interact with the pet,
  * and messages about exercising.
  * 
- * UPDATED: 16 APR 2021
+ * UPDATED: 19 APR 2021
  */
-
-import java.io.FileNotFoundException;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -57,8 +55,6 @@ public class GameWindow {
 	/**
 	 * Creates the game window display
 	 * 
-	 * @throws FileNotFoundException
-	 * @throws InterruptedException
 	 */
 	public GameWindow(Stage stage) {
 		this.stage = stage;

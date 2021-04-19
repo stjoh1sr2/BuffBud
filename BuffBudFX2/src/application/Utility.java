@@ -1,19 +1,21 @@
 package application;
 
 import java.io.*;
-import java.net.URISyntaxException;
-import java.net.URL;
 import java.util.*;
 
-import javafx.stage.Stage;
-
 public class Utility {
-	static boolean fileCreate = new File("C:\\BuffBud\\Data").mkdirs();
-	static File file = new File("C:\\BuffBud\\Data\\Pet.txt");
+	static String dirURL = System.getProperty("user.home") + "\\BuffBud\\Data";
+	static String fileURL = dirURL + "\\Pet.txt";
+	static boolean fileCreate = new File(dirURL).mkdirs();
+	static File file = new File(fileURL);
 
-	public static boolean readFile() throws IOException, URISyntaxException {
+	public static boolean readFile() {
 		// Reads in file
-		file.createNewFile();
+		try {
+			file.createNewFile();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		Scanner sc = null;
 		boolean fileReachable = false;
 
@@ -31,13 +33,15 @@ public class Utility {
 			} else {
 				return false;
 			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
 		} finally {
 			if (fileReachable) {
 				sc.close();
 			}
 		}
-		
-		
+		return false;
+
 	}
 
 	public static void save() {
@@ -52,7 +56,7 @@ public class Utility {
 
 		try {
 
-			writer = new PrintWriter("C:\\BuffBud\\Data\\Pet.txt");
+			writer = new PrintWriter(fileURL);
 
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -65,20 +69,33 @@ public class Utility {
 
 	}
 
-	public static Pet loadPet() throws FileNotFoundException, URISyntaxException {
-		Scanner scnr = new Scanner(file);
-		String[] petString = scnr.next().split(",");
-		Corgi petToPass = new Corgi(petString[0], Integer.parseInt(petString[1]), Long.parseLong(petString[2]),
-				false);
-		scnr.close();
+	public static Pet loadPet() {
+		Scanner scnr = null;
+		boolean readable = false;
+		try {
+			scnr = new Scanner(file);
+			readable = true;
+			String[] petString = scnr.next().split(",");
+			Corgi petToPass = new Corgi(petString[0], Integer.parseInt(petString[1]), Long.parseLong(petString[2]),
+					false);
+			scnr.close();
+			return petToPass;
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} finally {
+			if (readable) {
+				scnr.close();
+			}
+		}
 		
-		return petToPass;
+		return null;
+
 	}
 
-	public static void clear() throws URISyntaxException {
+	public static void clear() {
 		PrintWriter writer = null;
 		try {
-			writer = new PrintWriter("C:\\BuffBud\\Data\\Pet.txt");
+			writer = new PrintWriter(fileURL);
 		} catch (FileNotFoundException e) {
 			System.err.println("An error has occurred - no Pet file found.");
 		}

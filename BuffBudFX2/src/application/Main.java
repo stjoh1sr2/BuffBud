@@ -1,7 +1,5 @@
 package application;
 
-import java.io.File;
-
 /**
  * Launches the BuffBud program.
  * 
