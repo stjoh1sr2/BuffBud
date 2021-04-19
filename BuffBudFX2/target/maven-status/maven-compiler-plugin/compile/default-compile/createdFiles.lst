@@ -6,6 +6,7 @@ application\Utility.class
 application\Launcher.class
 application\Corgi.class
 application\GameWindow$1.class
+application\IntroWindow$1.class
 application\IntroWindow.class
 application\GameWindow$2.class
 application\GameWindow$5.class
