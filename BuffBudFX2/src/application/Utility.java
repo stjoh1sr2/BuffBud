@@ -3,6 +3,8 @@ package application;
 import java.io.*;
 import java.util.*;
 
+import javafx.stage.Stage;
+
 public class Utility {
 	static String dirURL = System.getProperty("user.home") + "\\BuffBud\\Data";
 	static String fileURL = dirURL + "\\Pet.txt";
@@ -68,6 +70,18 @@ public class Utility {
 		writer.close();
 
 	}
+	
+	// Submission of pet name
+		public static void submission(Stage stage) {
+			save(); // Saves and sets variables
+
+			// Opens up main application after creating new pet
+			GameWindow instance;
+			instance = new GameWindow(stage);
+			Main.loop = new GameLoop(instance);
+			Main.loop.start();
+
+		}
 
 	public static Pet loadPet() {
 		Scanner scnr = null;
