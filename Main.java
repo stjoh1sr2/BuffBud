@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 
 public class Main extends Application {
+	static Pet pet;
 
 	@Override
 	public void start(Stage stage) throws Exception {
@@ -11,6 +12,7 @@ public class Main extends Application {
 		if (Utility.readFile() == false) {
 			IntroWindow intro = new IntroWindow(stage);
 		} else if (Utility.readFile() == true) {
+			pet = Utility.loadPet();
 			GameWindow instance = new GameWindow(stage);
 			GameLoop loop = new GameLoop(instance);
 			loop.start();
