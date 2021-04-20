@@ -25,7 +25,7 @@ Alternatively, you could just open up the Launcher class and click "Run".
 ## Usage
 !!!!!!!!!!!!!!!!!!!!!!!!!! TODO
 
-## Technogies/Libraries Used
+## Technologies/Libraries Used
 !!!!!!!!!!!!!!!!!!!!!!!!!!! TODO
 
 ## Acknowledgements
