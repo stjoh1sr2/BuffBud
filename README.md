@@ -1,5 +1,6 @@
-# CPS240
-hi
+# BuffBud - Your Virtual Workout Buddy
+## Introduction
+!!!!!!!!!!!!!!!!!!!!!! TODO
 
 ## How to Install
 Downloading the BuffBud app is straightforward. The best way is to download the BuffBud.jar file and BuffBudFX.zip, which includes the entire Java project folder from the Eclipse IDE. From there, no installation is necessary. Because BuffBud.jar was not created by a trusted company, web browsers may attempt to block the download. However, as there is no malicious software attached to this app, it is acceptable (and necessary to complete installation) to bypass these warnings.
@@ -17,6 +18,15 @@ To import this project into Eclipse, first unzip the downloaded BuffBudFX.zip fi
 Depending on your Eclipse setup, there may be errors regarding the use of lambda expressions in the IntroWindow and NotificationApp classes. In the case of these errors, navigate to one of them, hover over the error, and select "Change project compliance and JRE to 1.8". This will ensure that Eclipse can run this program with the lambda expressions.
 
 #### Running
-After setting up the project in Eclipse, right click the Project and select Run As -> Java Application. For the main class, select Launcher.java. BuffBud should launch without issue. NOTE: while it may be possible to run the program using the Main class, the Launcher class is designated as the main class of the program for ease of exporting to a .jar file. It is advisable to use the Launcher.java class as the main class even in Eclipse.
+After setting up the project in Eclipse, right click the Project and select Run As -> Java Application. For the main class, select Launcher.java. BuffBud should launch without issue. **NOTE**: while it may be possible to run the program using the Main class, the Launcher class is designated as the main class of the program for ease of exporting to a .jar file. It is advisable to use the Launcher.java class as the main class even in Eclipse.
 
 Alternatively, you could just open up the Launcher class and click "Run".
+
+## Usage
+!!!!!!!!!!!!!!!!!!!!!!!!!! TODO
+
+## Technogies/Libraries Used
+!!!!!!!!!!!!!!!!!!!!!!!!!!! TODO
+
+## Acknowledgements
+!!!!!!!!!!!!!!!!!!!!!!!!!!! TODO
