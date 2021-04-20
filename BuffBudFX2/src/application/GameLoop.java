@@ -1,32 +1,65 @@
 package application;
 
-import java.net.URISyntaxException;
-
-/**
- * Acts as the primary loop for the animations and
- * general updates for th BuffBud application.
- * 
- * UPDATED: 16 APR 2021.
- */
-
 import javafx.animation.*;
 
+/**
+ * Acts as the primary loop for the animations and general updates for the
+ * BuffBud application. Extends AnimationTimer.
+ */
 public class GameLoop extends AnimationTimer {
-	final long EXERCISE_TIME = (long) (9 * Math.pow(10, 9 /* 11 */)); // Time between exercises
-	GameWindow gw;
-	long lastFrameTime; // The time of the last frame
-	int animationNumber; // The index for lists of animation
-	String[] exerciseList = { "go on a walk", "do jumping jacks", "jog in place", "do squats", "do some pushups",
-			"do lunges", "do some crunches", "pretend to jump rope" };
-	String lastExercise = ""; // The last exercise offered
-	boolean exerciseFound = false; // Flags if an exercise has been found to display yet
-	protected String nextAnim = "idle"; // Represents the next animation loop
-	protected String currAnim = "idle"; // Represents the current animation loop
+	/**
+	 * The amount of time in-between exercises.
+	 */
+	public final long EXERCISE_TIME = (long) (9 * Math.pow(10, 9 /* 11 */));
 
 	/**
-	 * Initializes the GameLoop
+	 * The GameWindow that the loop operates on.
+	 */
+	protected GameWindow gw;
+
+	/**
+	 * The time that the last frame appeared.
+	 */
+	protected long lastFrameTime;
+
+	/**
+	 * The index used to loop through lists of animation. Should always be between 0
+	 * and the length of the current animation's list - 1.
+	 */
+	protected int animationNumber;
+
+	/**
+	 * An array that lists different exercises that the pet can request its owner to
+	 * do.
+	 */
+	private String[] exerciseList = { "go on a walk", "do jumping jacks", "jog in place", "do squats",
+			"do some pushups", "do lunges", "do some crunches", "pretend to jump rope" };
+
+	/**
+	 * A string holding the last exercise offered. This eliminates duplicate
+	 * exercises back-to-back.
+	 */
+	private String lastExercise = "";
+
+	/**
+	 * Flags whether or not an exercise has been found to display for the user.
+	 */
+	protected boolean exerciseFound = false;
+
+	/**
+	 * Records the current animation ongoing.
+	 */
+	protected String nextAnim = "idle";
+
+	/**
+	 * Records the next animation to be executed after the current one is done.
+	 */
+	protected String currAnim = "idle";
+
+	/**
+	 * Initializes the GameLoop.
 	 * 
-	 * @param gw - the GameWindow the loop is running on
+	 * @param gw - The GameWindow the loop is running on.
 	 */
 	public GameLoop(GameWindow gw) {
 		this.gw = gw;
@@ -37,7 +70,7 @@ public class GameLoop extends AnimationTimer {
 	/**
 	 * Handles the GameLoop, overriding the handle method from AnimationTimer.
 	 * 
-	 * @param now - the current time in nanoseconds
+	 * @param now - The current time in nanoseconds.
 	 */
 	@Override
 	public void handle(long now) {
@@ -104,9 +137,9 @@ public class GameLoop extends AnimationTimer {
 	}
 
 	/**
-	 * Finds a random exercise to display
+	 * Finds a random exercise to display.
 	 * 
-	 * @return a random exercise as a String
+	 * @return A random exercise as a String.
 	 */
 	private String randomExercise() {
 		exerciseFound = false;
@@ -125,9 +158,9 @@ public class GameLoop extends AnimationTimer {
 	}
 
 	/**
-	 * Runs the animation mechanisms for the pet
+	 * Runs the animation mechanisms for the pet.
 	 * 
-	 * @param now - the current System time in nanoseconds
+	 * @param now - The current System time in nanoseconds.
 	 */
 	private void runAnimation(long now) {
 		/*

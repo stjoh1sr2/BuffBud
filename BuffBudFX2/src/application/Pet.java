@@ -1,28 +1,48 @@
 package application;
 
-/**
- * Class to represent a pet.
- * 
- * UPDATED:	16 APR 2021
- */
-
 import java.util.List;
 
 import javafx.scene.image.*;
 
+/**
+ * Class to represent a pet.
+ */
 public abstract class Pet {
+	/**
+	 * The health damage to a pet when an exercise fails.
+	 */
 	private final int REWARD_AMOUNT = 15;
+
+	/**
+	 * The health benefit to a pet when an exercise fails.
+	 */
 	private final int PUNISHMENT_AMOUNT = 15;
 
-	private int healthLevel; // Between 0 and 100
-	private boolean isSleeping; // Sleeping if health level between 0 and PUNISHMENT_AMOUNT
+	/**
+	 * The health level of the pet. Should always be between 0 and 100.
+	 */
+	private int healthLevel;
+
+	/**
+	 * Flags if the pet is "sleeping" (in ghost state). Should be "sleeping" if its
+	 * health level is between 0 and PUNISHMENT_AMOUNT.
+	 */
+	private boolean isSleeping;
+
+	/**
+	 * The name of the pet.
+	 */
 	private String petName;
+
+	/**
+	 * The time that the pet was last exercised.
+	 */
 	private long timeOfLastExercise;
 
 	/**
-	 * Constructor initializing with just a pet name
+	 * Constructor initializing with just a pet name.
 	 * 
-	 * @param petName
+	 * @param petName - The name of the pet.
 	 */
 	public Pet(String petName) {
 		this.healthLevel = 50;
@@ -32,12 +52,13 @@ public abstract class Pet {
 	}
 
 	/**
-	 * Constructor initializing with custom information
+	 * Constructor initializing with custom information.
 	 * 
-	 * @param petName
-	 * @param healthLevel
-	 * @param timeOfLastExercise
-	 * @param isSleeping
+	 * @param petName            - The name of the pet.
+	 * @param healthLevel        - The health level of the pet.
+	 * @param timeOfLastExercise - The time that the pet last exercised.
+	 * @param isSleeping         - Whether or not the pet is "sleeping"/in ghost
+	 *                           state.
 	 */
 	public Pet(String petName, int healthLevel, long timeOfLastExercise, boolean isSleeping) {
 		this.petName = petName;
@@ -47,79 +68,79 @@ public abstract class Pet {
 	}
 
 	/**
-	 * Gets health level
+	 * Gets health level.
 	 * 
-	 * @return health level of the pet
+	 * @return The health level of the pet.
 	 */
 	public int getHealthLevel() {
 		return healthLevel;
 	}
 
 	/**
-	 * Sets health level of pet
+	 * Sets health level of pet.
 	 * 
-	 * @param healthLevel to set the pet health level to
+	 * @param healthLevel - The level to set the pet health level to.
 	 */
 	public void setHealthLevel(int healthLevel) {
 		this.healthLevel = healthLevel;
 	}
 
 	/**
-	 * Checks if the pet is sleeping
+	 * Checks if the pet is sleeping.
 	 * 
-	 * @return true if sleeping, false if not
+	 * @return True if sleeping, false if not.
 	 */
 	public boolean isSleeping() {
 		return isSleeping;
 	}
 
 	/**
-	 * Sets the pet as sleeping or not sleeping
+	 * Sets the pet as sleeping or not sleeping.
 	 * 
-	 * @param isSleeping - true if want the pet to sleep, false if not
+	 * @param isSleeping - True if want the pet to sleep, false if not.
 	 */
 	public void setSleeping(boolean isSleeping) {
 		this.isSleeping = isSleeping;
 	}
 
 	/**
-	 * Retrieves the pet's name
+	 * Retrieves the pet's name.
 	 * 
-	 * @return the pet's name as a String
+	 * @return The pet's name as a String.
 	 */
 	public String getPetName() {
 		return petName;
 	}
 
 	/**
-	 * Sets the pet's name
+	 * Sets the pet's name.
 	 * 
-	 * @param petName - the name of the pet to be set
+	 * @param petName - The name of the pet to be set.
 	 */
 	public void setPetName(String petName) {
 		this.petName = petName;
 	}
 
 	/**
-	 * Retrieves the last time the pet exercised
+	 * Retrieves the last time the pet exercised.
 	 * 
-	 * @return the last time the pet exercised
+	 * @return The last time the pet exercised.
 	 */
 	public long getTimeOfLastExercise() {
 		return timeOfLastExercise;
 	}
 
 	/**
-	 * Sets the last time the pet exercised
+	 * Sets the last time the pet exercised.
 	 * 
-	 * @param timeOfLastExercise - the last time the pet exercised
+	 * @param timeOfLastExercise - The last time the pet exercised.
 	 */
 	public void setTimeOfLastExercise(long timeOfLastExercise) {
 		this.timeOfLastExercise = timeOfLastExercise;
 	}
 
 	/**
-	 * Modifies the pet's stats when a successful exercise occurs
+	 * Modifies the pet's stats when a successful exercise occurs.
 	 */
 	public void exerciseSuccess() {
 		timeOfLastExercise = System.nanoTime();
@@ -148,33 +169,83 @@ public abstract class Pet {
 		}
 	}
 
-	// Gets the species/breed of the current pet
+	/**
+	 * Retrieves species or breed of pet.
+	 * 
+	 * @return The species/breed of the selected pet.
+	 */
 	protected abstract String getPetType();
 
-	// For initializing the order of sprites for animation
+	/**
+	 * Initializes the animation list for idling.
+	 */
 	protected abstract void initIdleAnimList();
 
+	/**
+	 * Initializes the animation list for walking.
+	 */
 	protected abstract void initWalkAnimList();
 
+	/**
+	 * Initializes the animation list for celebrating.
+	 */
 	protected abstract void initCelebAnimList();
 
+	/**
+	 * Initializes the animation list for being sad.
+	 */
 	protected abstract void initSadAnimList();
 
+	/**
+	 * Initializes the animation list for dying/reviving.
+	 */
 	protected abstract void initDeathAnimList();
 
+	/**
+	 * Initializes the animation list for being a ghost.
+	 */
 	protected abstract void initGhostAnimList();
 
-	// For retrieving the sprites for animation
+	/**
+	 * Retrieves the animations for idling.
+	 * 
+	 * @return The list of animations for idling.
+	 */
 	protected abstract List<Image> getIdleAnimList();
 
+	/**
+	 * Retrieves the animations for walking.
+	 * 
+	 * @return The list of animations for walking.
+	 */
 	protected abstract List<Image> getWalkAnimList();
 
+	/**
+	 * Retrieves the animations for celebrating.
+	 * 
+	 * @return The list of animations for celebrating.
+	 */
 	protected abstract List<Image> getCelebAnimList();
 
+	/**
+	 * Retrieves the animations for being sad.
+	 * 
+	 * @return The list of animations for being sad.
+	 */
 	protected abstract List<Image> getSadAnimList();
 
+	/**
+	 * Retrieves the animations for dying/reviving.
+	 * 
+	 * @return The list of animations for dying/reviving.
+	 */
 	protected abstract List<Image> getDeathAnimList();
 
+	/**
+	 * Retrieves the animations for being a ghost.
+	 * 
+	 * @return The list of animations for being a ghost.
+	 */
 	protected abstract List<Image> getGhostAnimList();
 
 }
