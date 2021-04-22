@@ -4,9 +4,9 @@ Welcome to the world of BuffBud, where you can use a virtual pet to help you sta
 * Installation procedures
 * How to run BuffBud
 ** How to access BuffBud's source code
-* File structure
+* File list
 * Program usage
-* Technologies and Libraries used
+* Technologies and libraries used
 * Special acknowledgements
 
 ## How to Install
@@ -42,11 +42,25 @@ BuffBud should launch without issue.
 
 Alternatively, you could just open up the Launcher class and click "Run".
 
+## File List
+The Java classes that make up the project include:
+* application.Corgi.java
+* application.GameLoop.java
+* application.GameWindow.java
+* application.IntroWindow.java
+* application.Launcher.java
+* application.Main.java
+* application.NotificationApp.java
+* application.Pet.java
+* application.Utility.java
+
 ## Usage
-!!!!!!!!!!!!!!!!!!!!!!!!!! TODO
+The primary purpose of the BuffBud application is to create a workout buddy to help you stay in shape while working in-doors. The recommendation is that a user has the BuffBud application open whenever they intend to be sitting on their computer for an extended amount of time. CONTINUE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
 
 ## Technologies/Libraries Used
-!!!!!!!!!!!!!!!!!!!!!!!!!!! TODO
+The main tools used in this program are:
+* *JavaFX*: a GUI library instrumental to creating a working Graphical User Interface.
+* *Maven*: an application-packaging tool in Eclipse that allowed the program to package JavaFX runtime components as dependencies, which allowed the program to be exported as an executable .jar file.
 
 ## Acknowledgements
 !!!!!!!!!!!!!!!!!!!!!!!!!!! TODO
