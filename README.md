@@ -46,12 +46,12 @@ Alternatively, you could just open up the Launcher class and click "Run".
 The main structure of the BuffBudFX folder is:
 * **.settings** directory
 * **bin** directory: contains binary files for the classes and resources.
-** **application** directory: contains binary files for the Java classes for BuffBud.
-** **Images** directory: contains binary files for the Images directory for this application.
+  * **application** directory: contains binary files for the Java classes for BuffBud.
+  * **Images** directory: contains binary files for the Images directory for this application.
 * **doc** directory: contains sub-directorys and .html files relating to the JavaDoc documentation for this app.
 * **resources** directory: contains Image files for this project.
-** **Images** directory: contains all miscellaneous images.
-*** **Corgi** directory: contains all Corgi images.
+  * **Images** directory: contains all miscellaneous images.
+    * **Corgi** directory: contains all Corgi images.
 * **src** directory
 ** **application** package: contains all the Java code relevant to the application.
 *** application.Corgi.java
