@@ -13,12 +13,25 @@ To run the program using BuffBud.jar, you can simply double click on the .jar fi
 A less convienient way to run the BuffBud application is through the Eclipse IDE. First, you must import the program into the IDE, and secondly, you must resolve any issues and run the main method (application.Launcher).
 
 #### Importing into Eclipse
-To import this project into Eclipse, first unzip the downloaded BuffBudFX.zip file. Open up Eclipse and navigate to the "Package Explorer" tab. After that, right click in an empty area and choose "Import" from the selection menu. On the import wizard, expand the folder "Maven" and select "Existing Maven Projects". For the root directory, find the unzipped folder and select the folder within titled "BuffBudFX2". Click "finished" and the project will appear under the Package Explorer. 
+1. Unzip the downloaded BuffBudFX.zip file.
+2. Open up Eclipse and navigate to the "Package Explorer" tab. 
+3. Right click in an empty area and choose "Import" from the selection menu. 
+4. On the import wizard, expand the folder "Maven" and select "Existing Maven Projects". 
+5. For the root directory, find the unzipped folder and select the folder within titled "BuffBudFX2". 
+6. Click "finished" and the project will appear under the Package Explorer. 
 
-Depending on your Eclipse setup, there may be errors regarding the use of lambda expressions in the IntroWindow and NotificationApp classes. In the case of these errors, navigate to one of them, hover over the error, and select "Change project compliance and JRE to 1.8". This will ensure that Eclipse can run this program with the lambda expressions.
+Depending on your Eclipse setup, there may be errors regarding the use of lambda expressions in the IntroWindow and NotificationApp classes. In the case of these errors:
+1. Navigate to one of the errors.
+2. Hover over the error and select "Change project compliance and JRE to 1.8". 
+This will ensure that Eclipse can run this program with the lambda expressions.
 
 #### Running
-After setting up the project in Eclipse, right click the Project and select Run As -> Java Application. For the main class, select Launcher.java. BuffBud should launch without issue. **NOTE**: while it may be possible to run the program using the Main class, the Launcher class is designated as the main class of the program for ease of exporting to a .jar file. It is advisable to use the Launcher.java class as the main class even in Eclipse.
+1. After setting up the project in Eclipse, right click the Project and select Run As -> Java Application. 
+2. For the main class, select Launcher.java. 
+
+BuffBud should launch without issue. 
+
+**NOTE**: while it may be possible to run the program using the Main class, the Launcher class is designated as the main class of the program for ease of exporting to a .jar file. It is advisable to use the Launcher.java class as the main class even in Eclipse.
 
 Alternatively, you could just open up the Launcher class and click "Run".
 
