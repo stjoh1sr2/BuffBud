@@ -96,4 +96,4 @@ The main tools used in this program are:
 * *Maven*: an application-packaging tool in Eclipse that allowed the program to package JavaFX runtime components as dependencies, which allowed the program to be exported as an executable .jar file.
 
 ## Special Acknowledgements
-!!!!!!!!!!!!!!!!!!!!!!!!!!! TODO
+Special thanks to user Miniyeti from AngryElk on the game development website itch.io for their Corgi sprite designs used in this project. They were the designer of all the Corgi animation bases used for BuffBud. For some specific areas (ghost, dying, and sad pet states), their work was edited to fit the needs of the BuffBud application, but much of the animation is their work unchanged and used under the Creative Commons License (CC BY 4.0). The license can be read [here](https://creativecommons.org/licenses/by/4.0/) and Miniyeti's user profile on itch.io can be reached [here](https://itch.io/profile/miniyeti).
