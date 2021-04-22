@@ -1,6 +1,13 @@
 # BuffBud - Your Virtual Workout Buddy
 ## Introduction
-!!!!!!!!!!!!!!!!!!!!!! TODO
+Welcome to the world of BuffBud, where you can use a virtual pet to help you stay in shape! Our program was created to help encourage activity during the COVID-19 pandemic, where most people are spending their days sitting at an office in virtual meetings. This README document contains:
+* Installation procedures
+* How to run BuffBud
+** How to access BuffBud's source code
+* File structure
+* Program usage
+* Technologies and Libraries used
+* Special acknowledgements
 
 ## How to Install
 Downloading the BuffBud app is straightforward. The best way is to download the BuffBud.jar file and BuffBudFX.zip, which includes the entire Java project folder from the Eclipse IDE. From there, no installation is necessary. Because BuffBud.jar was not created by a trusted company, web browsers may attempt to block the download. However, as there is no malicious software attached to this app, it is acceptable (and necessary to complete installation) to bypass these warnings.
