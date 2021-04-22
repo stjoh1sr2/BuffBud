@@ -4,7 +4,7 @@ Welcome to the world of BuffBud, where you can use a virtual pet to help you sta
 * Installation procedures
 * How to run BuffBud
 ** How to access BuffBud's source code
-* File list
+* File list & structure
 * Program usage
 * Technologies and libraries used
 * Special acknowledgements
@@ -42,22 +42,35 @@ BuffBud should launch without issue.
 
 Alternatively, you could just open up the Launcher class and click "Run".
 
-## File List
-The Java classes that make up the project include:
-* application.Corgi.java
-* application.GameLoop.java
-* application.GameWindow.java
-* application.IntroWindow.java
-* application.Launcher.java
-* application.Main.java
-* application.NotificationApp.java
-* application.Pet.java
-* application.Utility.java
+## File List & Structure
+The main structure of the BuffBudFX folder is:
+* **.settings** directory
+* **bin** directory: contains binary files for the classes and resources.
+** **application** directory: contains binary files for the Java classes for BuffBud.
+** **Images** directory: contains binary files for the Images directory for this application.
+* **doc** directory: contains sub-directorys and .html files relating to the JavaDoc documentation for this app.
+* **resources** directory: contains Image files for this project.
+** **Images** directory: contains all miscellaneous images.
+*** **Corgi** directory: contains all Corgi images.
+* **src** directory
+** **application** package: contains all the Java code relevant to the application.
+*** application.Corgi.java
+*** application.GameLoop.java
+*** application.GameWindow.java
+*** application.IntroWindow.java
+*** application.Launcher.java
+*** application.Main.java
+*** application.NotificationApp.java
+*** application.Pet.java
+*** application.Utility.java
+* **target** directory: contains Maven information for this app.
+* dependency-reduced-pom.xml: contains a Maven xml file without dependencies.
+* pom.xml: contains a Maven xml file with JavaFX dependencies explicitly listed.
 
 ## Usage
 The primary purpose of the BuffBud application is to create a workout buddy to help you stay in shape while working in-doors. The recommendation is that a user has the BuffBud application open whenever they intend to be sitting on their computer for an extended amount of time. CONTINUE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
 
-## Technologies/Libraries Used
+## Technologies & Libraries Used
 The main tools used in this program are:
 * *JavaFX*: a GUI library instrumental to creating a working Graphical User Interface.
 * *Maven*: an application-packaging tool in Eclipse that allowed the program to package JavaFX runtime components as dependencies, which allowed the program to be exported as an executable .jar file.
