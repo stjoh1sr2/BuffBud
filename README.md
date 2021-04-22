@@ -67,13 +67,33 @@ The main structure of the BuffBudFX folder is:
 * dependency-reduced-pom.xml: contains a Maven xml file without dependencies.
 * pom.xml: contains a Maven xml file with JavaFX dependencies explicitly listed.
 
+A file called Pet.txt is created within the user's home directory for the purpose of local saving. The program creates a directory BuffBud/Data where the Pet.txt file is saved.
+
 ## Usage
-The primary purpose of the BuffBud application is to create a workout buddy to help you stay in shape while working in-doors. The recommendation is that a user has the BuffBud application open whenever they intend to be sitting on their computer for an extended amount of time. CONTINUE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
+The primary purpose of the BuffBud application is to create a workout buddy to help you stay in shape while working in-doors. The recommendation is that a user has the BuffBud application open whenever they intend to be sitting on their computer for an extended amount of time. 
+
+When you first open the program without any save data, you are greeted by an intro screen that gives you a pet to help you on your health journey. You are prompted to name the pet and press submit to launch the main program window.
+
+In the main program window, your pet appears. Above them, there is a toolbar that holds different user buttons and information:
+* Save & Exit Button: saves the current state of the pet and exits the program.
+* Save Button: saves the current state of the pet without exiting the app.
+* Exit & Reset Button: clears the pet save data and exits the program. This is the button to click if you would like a new pet.
+* Health Level Label: shows the health level of the pet.
+
+Below the pet, there is a dialogue box for communicating information to the user. This is where the application will ask you to exercise. When the application asks the user a question, "yes" and "no" options appear within the dialogue box for answering. Depending on your answer, the pet will react negatively or positively and either lose health or gain health.
+
+### Pet States
+In this app, your pet has several states:
+* Normal: When your pet has a high enough health level, the pet will act normal.
+* Happy: The pet will be happy right after you exercise.
+* Exercising: In the BuffBud app, the pet exercises alongside you. For example, your Corgi might walk while you are supposed to be exercising.
+* Sad: The pet reacts sadly when you decline to exercise.
+* Ghost: The pet becomes a ghost if their health level is under a certain amount. You do not want to kill your pet, do you? The pet will come back to life after you exercise and bring its health level back above a predetermined amount.
 
 ## Technologies & Libraries Used
 The main tools used in this program are:
 * *JavaFX*: a GUI library instrumental to creating a working Graphical User Interface.
 * *Maven*: an application-packaging tool in Eclipse that allowed the program to package JavaFX runtime components as dependencies, which allowed the program to be exported as an executable .jar file.
 
-## Acknowledgements
+## Special Acknowledgements
 !!!!!!!!!!!!!!!!!!!!!!!!!!! TODO
