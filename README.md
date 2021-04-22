@@ -53,16 +53,16 @@ The main structure of the BuffBudFX folder is:
   * **Images** directory: contains all miscellaneous images.
     * **Corgi** directory: contains all Corgi images.
 * **src** directory
- * **application** package: contains all the Java code relevant to the application.
-  * application.Corgi.java
-  * application.GameLoop.java
-  * application.GameWindow.java
-  * application.IntroWindow.java
-  * application.Launcher.java
-  * application.Main.java
-  * application.NotificationApp.java
-  * application.Pet.java
-  * application.Utility.java
+  * **application** package: contains all the Java code relevant to the application.
+    * application.Corgi.java
+    * application.GameLoop.java
+    * application.GameWindow.java
+    * application.IntroWindow.java
+    * application.Launcher.java
+    * application.Main.java
+    * application.NotificationApp.java
+    * application.Pet.java
+    * application.Utility.java
 * **target** directory: contains Maven information for this app.
 * dependency-reduced-pom.xml: contains a Maven xml file without dependencies.
 * pom.xml: contains a Maven xml file with JavaFX dependencies explicitly listed.
