@@ -9,12 +9,14 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.text.*;
 import javafx.stage.*;
 
 public class IntroWindow {
 	private int count = 0;
+	private int frame = 0;
 	public static Pet pet = new Corgi(null);
 
 	// Introductory screen
@@ -23,13 +25,15 @@ public class IntroWindow {
 
 	// Intro Components - Text including fonts and textfields
 	TextField nameTF = new TextField();
-	Text text = new Text(30.0, 30.0, "This is your new workout buddy!");
+	Text text = new Text("This is your new workout buddy!");
 	Text nameText = new Text("Pet Name: ");
 	Font textFont = Font.font("Times New Roman", FontWeight.BOLD, 50);
 	Font petFont = Font.font("Times New Roman", FontWeight.BOLD, 25);
 
 	// Intro Components - Images
-	Image puppy = new Image("file:resources/Images/Corgi/corgiIdle0.png", 200, 200, true, false);
+	Image puppy = new Image("file:resources/Images/Corgi/corgiSit2.png", 200, 200, true, false);
+	Image puppy2 = new Image("file:resources/Images/Corgi/corgiSit3.png", 200, 200, true, false);
+	Image puppy3 = new Image("file:resources/Images/Corgi/corgiSit4.png", 200, 200, true, false);
 	Image bg = new Image("file:resources/Images/IntroScreen.png");
 	ImageView puppyView = new ImageView(puppy);
 
@@ -49,6 +53,7 @@ public class IntroWindow {
 		intro.setBottom(nextButton);
 		intro.setCenter(puppyView);
 		intro.setTop(text);
+		BorderPane.setMargin(text, new Insets(50, 0, 0, 0));
 		BorderPane.setMargin(puppyView, new Insets(100, 0, 0, 0));
 		BorderPane.setAlignment(nextButton, Pos.BOTTOM_RIGHT);
 
@@ -63,10 +68,14 @@ public class IntroWindow {
 			switch (count) {
 			case 0:
 				text.setText("They are going to help you work out everyday!");
+				puppyView.setImage(puppy2);
+				BorderPane.setMargin(puppyView, new Insets(42, 0, 0, 0));
 				break;
 			case 1:
 				intro.setBottom(tb);
+				puppyView.setImage(puppy3);
 				text.setText("What would you like to name your new friend?");
+				BorderPane.setMargin(puppyView, new Insets(55, 0, 0, 0));
 				break;
 			}
 			count++;
@@ -77,7 +86,7 @@ public class IntroWindow {
 			@Override
 			public void handle(KeyEvent ke) {
 				if (ke.getCode().equals(KeyCode.ENTER)) {
-					Main.pet.setPetName(nameTF.getText());
+					pet.setPetName(nameTF.getText());
 					Utility.submission(stage);
 				}
 			}
@@ -85,7 +94,7 @@ public class IntroWindow {
 
 		// Setting up submit button
 		submitButton.setOnAction(e -> {
-			Main.pet.setPetName(nameTF.getText());
+			pet.setPetName(nameTF.getText());
 			Utility.submission(stage);
 		});
 
