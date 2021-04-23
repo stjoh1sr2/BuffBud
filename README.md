@@ -3,7 +3,7 @@
 Welcome to the world of BuffBud, where you can use a virtual pet to help you stay in shape! Our program was created to help encourage activity during the COVID-19 pandemic, where most people are spending their days sitting at an office in virtual meetings. This README document contains:
 * Installation procedures
 * How to run BuffBud
- * How to access BuffBud's source code
+  * How to access BuffBud's source code
 * File list & structure
 * Program usage
 * Technologies and libraries used
