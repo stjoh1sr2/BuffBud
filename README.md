@@ -9,6 +9,8 @@ Welcome to the world of BuffBud, where you can use a virtual pet to help you sta
 * Technologies and libraries used
 * Special acknowledgements
 
+**NOTE:** This program is only currently supporting Windows devices.
+
 ## How to Install
 Downloading the BuffBud app is straightforward. The best way is to download BuffBud.zip, which includes the entire Java project folder from the Eclipse IDE and all aspects of the project. From there, no installation is necessary. If downloading the .jar file individually, because BuffBud.jar was not created by a trusted company, web browsers may attempt to block the download. However, as there is no malicious software attached to this app, it is acceptable (and necessary to complete installation) to bypass these warnings.
 
