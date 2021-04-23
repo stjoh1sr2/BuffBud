@@ -10,7 +10,7 @@ Welcome to the world of BuffBud, where you can use a virtual pet to help you sta
 * Special acknowledgements
 
 ## How to Install
-Downloading the BuffBud app is straightforward. The best way is to download BuffBud.zip, which includes the entire Java project folder from the Eclipse IDE. From there, no installation is necessary. Because BuffBud.jar was not created by a trusted company, web browsers may attempt to block the download. However, as there is no malicious software attached to this app, it is acceptable (and necessary to complete installation) to bypass these warnings.
+Downloading the BuffBud app is straightforward. The best way is to download BuffBud.zip, which includes the entire Java project folder from the Eclipse IDE and all aspects of the project. From there, no installation is necessary. If downloading the .jar file individually, because BuffBud.jar was not created by a trusted company, web browsers may attempt to block the download. However, as there is no malicious software attached to this app, it is acceptable (and necessary to complete installation) to bypass these warnings.
 
 ## How to Run
 ### Using BuffBud.jar
@@ -20,7 +20,7 @@ First, you must unzip the BuffBud folder and locate the .jar file within. To run
 A less convienient way to run the BuffBud application is through the Eclipse IDE. First, you must import the program into the IDE, and secondly, you must resolve any issues and run the main method (application.Launcher).
 
 #### Importing into Eclipse
-1. Unzip the downloaded BuffBudFX.zip file.
+1. Unzip the downloaded BuffBud.zip file.
 2. Open up Eclipse and navigate to the "Package Explorer" tab. 
 3. Right click in an empty area and choose "Import" from the selection menu. 
 4. On the import wizard, expand the folder "Maven" and select "Existing Maven Projects". 
@@ -48,7 +48,7 @@ The files located in the BuffBud folder include:
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
 
 ### Within the BuffBudFX2 Folder
-The main structure of the BuffBudFX2 folder is:
+The BuffBudFX2 folder contains the entire Eclipse project for BuffBud. The main structure of the BuffBudFX2 folder is:
 * **.settings** directory
 * **bin** directory: contains binary files for the classes and resources.
   * **application** directory: contains binary files for the Java classes for BuffBud.
