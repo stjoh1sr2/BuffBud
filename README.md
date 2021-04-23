@@ -10,11 +10,11 @@ Welcome to the world of BuffBud, where you can use a virtual pet to help you sta
 * Special acknowledgements
 
 ## How to Install
-Downloading the BuffBud app is straightforward. The best way is to download the BuffBud.jar file and BuffBudFX.zip, which includes the entire Java project folder from the Eclipse IDE. From there, no installation is necessary. Because BuffBud.jar was not created by a trusted company, web browsers may attempt to block the download. However, as there is no malicious software attached to this app, it is acceptable (and necessary to complete installation) to bypass these warnings.
+Downloading the BuffBud app is straightforward. The best way is to download BuffBud.zip, which includes the entire Java project folder from the Eclipse IDE. From there, no installation is necessary. Because BuffBud.jar was not created by a trusted company, web browsers may attempt to block the download. However, as there is no malicious software attached to this app, it is acceptable (and necessary to complete installation) to bypass these warnings.
 
 ## How to Run
 ### Using BuffBud.jar
-To run the program using BuffBud.jar, you can simply double click on the .jar file or right click and press "open". If the .jar file will not run, there is likely a permissions error, as BuffBud requires the creation of folders in the user's home directory and the creation of a text file. If this is the case, then running the program as an administrator may resolve the issue. Note: this program requires Java to be installed in order to run.
+First, you must unzip the BuffBud folder and locate the .jar file within. To run the program using BuffBud.jar, you can simply double click on the .jar file or right click and press "open". If the .jar file will not run, there is likely a permissions error, as BuffBud requires the creation of folders in the user's home directory and the creation of a text file. If this is the case, then running the program as an administrator may resolve the issue. Note: this program requires Java to be installed in order to run.
 
 ### Running from Eclipse IDE
 A less convienient way to run the BuffBud application is through the Eclipse IDE. First, you must import the program into the IDE, and secondly, you must resolve any issues and run the main method (application.Launcher).
@@ -43,7 +43,12 @@ BuffBud should launch without issue.
 Alternatively, you could just open up the Launcher class and click "Run".
 
 ## File List & Structure
-The main structure of the BuffBudFX folder is:
+### For Entire BuffBud Project Folder
+The files located in the BuffBud folder include:
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
+
+### Within the BuffBudFX2 Folder
+The main structure of the BuffBudFX2 folder is:
 * **.settings** directory
 * **bin** directory: contains binary files for the classes and resources.
   * **application** directory: contains binary files for the Java classes for BuffBud.
